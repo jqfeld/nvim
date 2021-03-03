@@ -229,6 +229,8 @@ nmap <leader>4 :b4<CR>
 nmap <leader>5 :b5<CR>
 nmap <leader>6 :b6<CR>
 nmap <leader><TAB> :bn<CR>
+nmap <leader>fvd  :e $MYVIMRC<CR>
+nmap <leader>fvr  :source $MYVIMRC<CR>
 
 noremap <leader>s :split\|term<CR>i
 tnoremap <leader>q <C-\><C-n> :q<CR>
