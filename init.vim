@@ -5,8 +5,14 @@
 " " General settings
 " "
 " ---------------------------------------------------------------------------
+
+let g:nvim_config_root = stdpath('config')
+set mouse=a
+
+
 "  " drop vi support - kept for vim compatibility but not needed for nvim
 set nocompatible
+
 
 "dein Scripts-----------------------------
 if &compatible
@@ -14,14 +20,14 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=C:\Users\janku\.cache\dein\repos\github.com\Shougo\dein.vim
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
-call dein#begin('C:\Users\janku\.cache\dein')
+call dein#begin('~/.cache/dein')
 
 " Let dein manage dein
 " Required:
-call dein#add('C:\Users\janku\.cache\dein\repos\github.com\Shougo\dein.vim')
+call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
 
 " Add or remove your plugins here like this:
 " Style
@@ -32,9 +38,12 @@ call dein#add('preservim/nerdtree')
 "
 " Language support
 call dein#add('neovim/nvim-lspconfig')
+call dein#add('nvim-lua/completion-nvim')
 call dein#add('rust-lang/rust.vim')
 call dein#add('JuliaEditorSupport/julia-vim')
+call dein#add('steelsojka/completion-buffers')
 
+call dein#add('hkupty/iron.nvim')
 call dein#add('preservim/nerdcommenter')
 
 " Required:
@@ -169,75 +178,31 @@ let g:airline#extensions#tabline#enabled = 1
 " NERDCommenter
 let g:NERDCreateDefaultMappings = 1
 
+"
+" Autocompletion
+autocmd BufEnter * lua require'completion'.on_attach()
+
+let g:completion_enable_auto_popup = 1
+
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect
+
+" Avoid showing message extra message when using completion
+set shortmess+=c
+
+let g:completion_chain_complete_list = [
+    \{'complete_items': ['lsp', 'snippet', 'buffers']},
+    \{'mode': '<c-p>'},
+    \{'mode': '<c-n>'}
+\]
+
 " LSP configuration
 " ----------------------------------------------------------------------------
-lua << EOF
-
-local nvim_lsp = require('lspconfig')
-local on_attach = function(client, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-  -- Mappings.
-  local opts = { noremap=true, silent=true }
-  buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-  buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-
-  -- Set some keybinds conditional on server capabilities
-  if client.resolved_capabilities.document_formatting then
-    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-  elseif client.resolved_capabilities.document_range_formatting then
-    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
-  end
-
-  -- Set autocommands conditional on server_capabilities
-  if client.resolved_capabilities.document_highlight then
-    vim.api.nvim_exec([[
-      hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
-      hi LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
-      hi LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
-      augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
-    ]], false)
-  end
-end
-
--- Use a loop to conveniently both setup defined servers 
--- and map buffer local keybindings when the language server attaches
--- local servers = {"rust-analyzer", "julials"}
--- for _, lsp in ipairs(servers) do
---   nvim_lsp[lsp].setup { on_attach = on_attach }
--- end
-
-nvim_lsp.rust_analyzer.setup{
-  on_attach = on_attach
-}
-
-nvim_lsp.julials.setup{
-  on_attach = on_attach
-}
-
-EOF
-
-
+exec 'luafile ' . g:nvim_config_root . '/lsp_config.lua'
 
 "  "Keymaps
 "
@@ -252,9 +217,14 @@ nmap <leader>5 :b5<CR>
 nmap <leader>6 :b6<CR>
 nmap <leader><TAB> :bn<CR>
 
+noremap <leader>t :split\|term<CR>
+tnoremap <leader>q <C-\><C-n> :q<CR>
+tnoremap <Esc> <C-\><C-n>
+
 " NERDTree
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 
+exec 'luafile ' . g:nvim_config_root . '/plugins.lua'
