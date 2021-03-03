@@ -10,6 +10,7 @@ let g:nvim_config_root = stdpath('config')
 set mouse=a
 
 
+
 "  " drop vi support - kept for vim compatibility but not needed for nvim
 set nocompatible
 
