@@ -36,16 +36,21 @@ call dein#add('morhetz/gruvbox')
 call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
 call dein#add('preservim/nerdtree')
+call dein#add('ryanoasis/vim-devicons')
+
 "
 " Language support
 call dein#add('neovim/nvim-lspconfig')
 call dein#add('nvim-lua/completion-nvim')
+call dein#add('nvim-lua/lsp_extensions.nvim')
 call dein#add('rust-lang/rust.vim')
 call dein#add('JuliaEditorSupport/julia-vim')
 call dein#add('steelsojka/completion-buffers')
 
 call dein#add('hkupty/iron.nvim')
 call dein#add('preservim/nerdcommenter')
+
+call dein#add('tpope/vim-fugitive')
 
 " Required:
 call dein#end()
@@ -80,8 +85,8 @@ au FocusGained,BufEnter * :silent! !
 "
 "  " use Unicode
 set encoding=utf-8
-set fenc=utf-8
-set fencs=iso-2022-jp,euc-jp,cp932
+"set fenc=utf-8
+" set fencs=iso-2022-jp,euc-jp,cp932
 "
 "  " errors flash screen rather than emit beep
 set visualbell
@@ -204,6 +209,13 @@ let g:completion_chain_complete_list = [
 " LSP configuration
 " ----------------------------------------------------------------------------
 exec 'luafile ' . g:nvim_config_root . '/lsp_config.lua'
+autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
+\ lua require'lsp_extensions'.inlay_hints{ 
+\  prefix = '<==', 
+\  highlight = "Comment", 
+\  enabled = {"TypeHint", "ChainingHint", "ParameterHint"},
+\  only_current_line = true
+\  }
 
 "  "Keymaps
 "
@@ -218,7 +230,7 @@ nmap <leader>5 :b5<CR>
 nmap <leader>6 :b6<CR>
 nmap <leader><TAB> :bn<CR>
 
-noremap <leader>t :split\|term<CR>
+noremap <leader>s :split\|term<CR>i
 tnoremap <leader>q <C-\><C-n> :q<CR>
 tnoremap <Esc> <C-\><C-n>
 

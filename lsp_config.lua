@@ -1,4 +1,13 @@
 local nvim_lsp = require('lspconfig')
+
+require('lsp_extensions').inlay_hints{
+  enabled = {
+    "TypeHint",
+    "ChainingHint",
+    "ParameterHint"
+  }
+}
+
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -53,7 +62,12 @@ end
 -- end
 
 nvim_lsp.rust_analyzer.setup{
-  on_attach = on_attach
+  on_attach = on_attach,
+  inlineHints = {
+    enable = true,
+    parameterHints = true,
+    typeHints = true
+  }
 }
 
 nvim_lsp.julials.setup{
