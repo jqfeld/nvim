@@ -52,6 +52,9 @@ call dein#add('preservim/nerdcommenter')
 
 call dein#add('tpope/vim-fugitive')
 
+call dein#add('iamcco/markdown-preview.nvim', {'on_ft': ['markdown', 'pandoc.markdown', 'rmd'],
+					\ 'build': 'cd app && yarn install' })
+
 " Required:
 call dein#end()
 
