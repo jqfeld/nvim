@@ -241,9 +241,9 @@ tnoremap <leader>q <C-\><C-n> :q<CR>
 tnoremap <Esc> <C-\><C-n>
 
 " NERDTree
-nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
+nnoremap <leader>nf :NERDTreeFocus<CR>
+nnoremap <leader>nd :NERDTree .<CR>
+nnoremap <leader>nt :NERDTreeToggle<CR>
+nnoremap <leader>ns :NERDTreeFind<CR>
 
 exec 'luafile ' . g:nvim_config_root . '/plugins.lua'
