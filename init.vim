@@ -37,6 +37,7 @@ call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
 call dein#add('preservim/nerdtree')
 call dein#add('ryanoasis/vim-devicons')
+call dein#add('mhinz/vim-startify')
 
 "
 " Language support
