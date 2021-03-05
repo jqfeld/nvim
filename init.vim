@@ -48,6 +48,8 @@ call dein#add('rust-lang/rust.vim')
 call dein#add('JuliaEditorSupport/julia-vim')
 call dein#add('steelsojka/completion-buffers')
 
+call dein#add('glepnir/lspsaga.nvim')
+
 call dein#add('hkupty/iron.nvim')
 call dein#add('preservim/nerdcommenter')
 
@@ -55,6 +57,8 @@ call dein#add('tpope/vim-fugitive')
 
 call dein#add('iamcco/markdown-preview.nvim', {'on_ft': ['markdown', 'pandoc.markdown', 'rmd'],
 					\ 'build': 'cd app && yarn install' })
+
+call dein#add('chrisbra/csv.vim')
 
 " Required:
 call dein#end()
@@ -114,7 +118,7 @@ set relativenumber
 "  " Tab key enters 2 spaces
 "  " To enter a TAB character when `expandtab` is in effect,
 "  " CTRL-v-TAB
-set expandtab tabstop=2 shiftwidth=2 softtabstop=2 
+set expandtab tabstop=4 shiftwidth=4 softtabstop=4 
 "
 "  " Indent new line the same as the preceding line
 set autoindent
@@ -205,14 +209,16 @@ set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 
 let g:completion_chain_complete_list = [
-    \{'complete_items': ['lsp', 'snippet', 'buffers']},
+    \{'complete_items': ['lsp', 'path','snippet', 'buffers']},
     \{'mode': '<c-p>'},
     \{'mode': '<c-n>'}
 \]
 
+
 " LSP configuration
 " ----------------------------------------------------------------------------
 exec 'luafile ' . g:nvim_config_root . '/lsp_config.lua'
+
 autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
 \ lua require'lsp_extensions'.inlay_hints{ 
 \  prefix = '<==', 
@@ -220,6 +226,7 @@ autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
 \  enabled = {"TypeHint", "ChainingHint", "ParameterHint"},
 \  only_current_line = true
 \  }
+
 
 "  "Keymaps
 "
