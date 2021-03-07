@@ -9,248 +9,99 @@
 let g:nvim_config_root = stdpath('config')
 set mouse=a
 
+lua require('plugins')
+lua require('lsp_config')
 
-
+"" Behaviour
 "  " drop vi support - kept for vim compatibility but not needed for nvim
 set nocompatible
 
-
-"dein Scripts-----------------------------
-if &compatible
-  set nocompatible               " Be iMproved
-endif
-
-" Required:
-set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
-
-" Required:
-call dein#begin('~/.cache/dein')
-
-" Let dein manage dein
-" Required:
-call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
-
-" Add or remove your plugins here like this:
-" Style
-call dein#add('morhetz/gruvbox')
-call dein#add('vim-airline/vim-airline')
-call dein#add('vim-airline/vim-airline-themes')
-call dein#add('preservim/nerdtree')
-call dein#add('ryanoasis/vim-devicons')
-call dein#add('mhinz/vim-startify')
-
-"
-" Language support
-call dein#add('neovim/nvim-lspconfig')
-call dein#add('nvim-lua/completion-nvim')
-call dein#add('nvim-lua/lsp_extensions.nvim')
-call dein#add('rust-lang/rust.vim')
-call dein#add('JuliaEditorSupport/julia-vim')
-call dein#add('steelsojka/completion-buffers')
-
-call dein#add('glepnir/lspsaga.nvim')
-
-call dein#add('hkupty/iron.nvim')
-call dein#add('preservim/nerdcommenter')
-
-call dein#add('tpope/vim-fugitive')
-
-call dein#add('iamcco/markdown-preview.nvim', {'on_ft': ['markdown', 'pandoc.markdown', 'rmd'],
-					\ 'build': 'cd app && yarn install' })
-
-call dein#add('chrisbra/csv.vim')
-
-" Required:
-call dein#end()
-
-
-" Required:
-filetype plugin indent on
-syntax enable
-
-" If you want to install not installed plugins on startup.
-if dein#check_install()
-  call dein#install()
-endif
-
-call map(dein#check_clean(), "delete(v:val, 'rf')")
-
-"End dein Scripts-------------------------
-
-
-"
-"  " number of lines at the beginning and end of files checked for
-"  file-specific vars
-set modelines=0
-"
 "  " reload files changed outside of Vim not currently modified in Vim (needs
 "  below)
-set autoread
-"
-"  "
 "  http://stackoverflow.com/questions/2490227/how-does-vims-autoread-work#20418591
+set autoread
 au FocusGained,BufEnter * :silent! !
-"
-"  " use Unicode
-set encoding=utf-8
-"set fenc=utf-8
-" set fencs=iso-2022-jp,euc-jp,cp932
-"
-"  " errors flash screen rather than emit beep
-set visualbell
-"
-"  " make Backspace work like Delete
-" set backspace=indent,eol,start
-"
-"  " don't create `filename~` backups
-"  set nobackup
-"
-"  " don't create temp files
-"  set noswapfile
-"
-"  " line numbers and distances
-set relativenumber 
-"  set number 
-"
-"  " number of lines offset when jumping
-"  set scrolloff=2
-"
-"  " Tab key enters 2 spaces
-"  " To enter a TAB character when `expandtab` is in effect,
-"  " CTRL-v-TAB
-set expandtab tabstop=4 shiftwidth=4 softtabstop=4 
-"
-"  " Indent new line the same as the preceding line
-set autoindent
-"
-"  " statusline indicates insert or normal mode
-set showmode showcmd
-"
-"  " make scrolling and painting fast
-"  " ttyfast kept for vim compatibility but not needed for nvim
-set ttyfast lazyredraw
-"
-"  " highlight matching parens, braces, brackets, etc
-set showmatch
-"
-"  " http://vim.wikia.com/wiki/Searching
-set hlsearch incsearch ignorecase smartcase
-"
-"  " As opposed to `wrap`
-set nowrap
-"
-"  " http://vim.wikia.com/wiki/Set_working_directory_to_the_current_file
-set autochdir
-"
-"  " open new buffers without saving current modifications (buffer remains
-"  open)
-set hidden
-"
-"  "
-"  http://stackoverflow.com/questions/9511253/how-to-effectively-use-vim-wildmenu
-set wildmenu wildmode=list:longest,full
-"
-"  " StatusLine always visible, display full path
-"  " http://learnvimscriptthehardway.stevelosh.com/chapters/17.html
-set laststatus=2 statusline=%F
-"
-"  " Use system clipboard
-"  " http://vim.wikia.com/wiki/Accessing_the_system_clipboard
-set clipboard=unnamedplus
-"
-"  " Show character column
-"  highlight ColorColumn ctermbg=DarkBlue
-set colorcolumn=80
-"
-"  " CursorLine - sometimes autocmds are not performant; turn off if so
-"  " http://vim.wikia.com/wiki/Highlight_current_line
-set cursorline
-"  " Normal mode
-"  highlight CursorLine ctermbg=None
-"  autocmd InsertEnter * highlight  CursorLine ctermbg=17 ctermfg=None
-"  autocmd InsertLeave * highlight  CursorLine ctermbg=None ctermfg=None
 
-"  " Split below and right
+set encoding=utf-8
+
+set visualbell
+
+set expandtab tabstop=4 shiftwidth=4 softtabstop=4 
+set autoindent
+
+set ttyfast lazyredraw
+set showmatch
+set hlsearch incsearch ignorecase smartcase
+set nowrap
+set autochdir
+set hidden
+
+" Use system clipboard
+set clipboard=unnamedplus
+
 set splitbelow
 set splitright
 
 
-"  " Colors
-"  "
-"  ---------------------------------------------------------------------------
-syntax enable
-set background=dark
-autocmd vimenter * ++nested colorscheme gruvbox
-"  "
-"  ---------------------------------------------------------------------------
-"
-"  Airline and tab bar
-"  ---------------------------------------------------------------------------
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
+"" Style
+"" -------------------------
+set background=dark " or light if you want light mode
+colorscheme gruvbox
 
-" NERDCommenter
-let g:NERDCreateDefaultMappings = 1
+set colorcolumn=80
+set cursorline
+set showmode showcmd
+set relativenumber 
 
-"
-" Autocompletion
-autocmd BufEnter * lua require'completion'.on_attach()
+lua require('lualine').status()
+set termguicolors
 
-let g:completion_enable_auto_popup = 1
-
-" Use <Tab> and <S-Tab> to navigate through popup menu
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" Set completeopt to have a better completion experience
-set completeopt=menuone,noinsert,noselect
-
-" Avoid showing message extra message when using completion
-set shortmess+=c
-
-let g:completion_chain_complete_list = [
-    \{'complete_items': ['lsp', 'path','snippet', 'buffers']},
-    \{'mode': '<c-p>'},
-    \{'mode': '<c-n>'}
-\]
-
-
-" LSP configuration
-" ----------------------------------------------------------------------------
-exec 'luafile ' . g:nvim_config_root . '/lsp_config.lua'
-
-autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
-\ lua require'lsp_extensions'.inlay_hints{ 
-\  prefix = '<==', 
-\  highlight = "Comment", 
-\  enabled = {"TypeHint", "ChainingHint", "ParameterHint"},
-\  only_current_line = true
-\  }
-
-
-"  "Keymaps
-"
+"" Keymaps
+"" -------------------------
+"" quick reload of init.vim
 let mapleader = " "
-map <leader>h :noh<CR>
-
-nmap <leader>1 :b1<CR>
-nmap <leader>2 :b2<CR>
-nmap <leader>3 :b3<CR>
-nmap <leader>4 :b4<CR>
-nmap <leader>5 :b5<CR>
-nmap <leader>6 :b6<CR>
-nmap <leader><TAB> :bn<CR>
 nmap <leader>fvd  :e $MYVIMRC<CR>
 nmap <leader>fvr  :source $MYVIMRC<CR>
+map <leader>h :noh<CR>
 
-noremap <leader>s :split\|term<CR>i
-tnoremap <leader>q <C-\><C-n> :q<CR>
-tnoremap <Esc> <C-\><C-n>
+"" barbar.nvim
+nnoremap <silent> <Space>bd :BufferOrderByDirectory<CR>
+nnoremap <silent> <Space>bl :BufferOrderByLanguage<CR>
+nnoremap <silent>    <A-,> :BufferPrevious<CR>
+nnoremap <silent>    <A-.> :BufferNext<CR>
+nnoremap <silent>    <A-<> :BufferMovePrevious<CR>
+nnoremap <silent>    <A->> :BufferMoveNext<CR>
+nnoremap <silent>    <A-1> :BufferGoto 1<CR>
+nnoremap <silent>    <A-2> :BufferGoto 2<CR>
+nnoremap <silent>    <A-3> :BufferGoto 3<CR>
+nnoremap <silent>    <A-4> :BufferGoto 4<CR>
+nnoremap <silent>    <A-5> :BufferGoto 5<CR>
+nnoremap <silent>    <A-6> :BufferGoto 6<CR>
+nnoremap <silent>    <A-7> :BufferGoto 7<CR>
+nnoremap <silent>    <A-8> :BufferGoto 8<CR>
+nnoremap <silent>    <A-9> :BufferLast<CR>
+nnoremap <silent>    <A-c> :BufferClose<CR>
 
-" NERDTree
-nnoremap <leader>nf :NERDTreeFocus<CR>
-nnoremap <leader>nd :NERDTree .<CR>
-nnoremap <leader>nt :NERDTreeToggle<CR>
-nnoremap <leader>ns :NERDTreeFind<CR>
+"" Telescope.nvim
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
-exec 'luafile ' . g:nvim_config_root . '/plugins.lua'
+"" NvimTree
+nnoremap <C-n> :NvimTreeToggle<CR>
+nnoremap <leader>r :NvimTreeRefresh<CR>
+nnoremap <leader>n :NvimTreeFindFile<CR>
+" NvimTreeOpen and NvimTreeClose are also available if you need them
+"
+"
+"" Dashboard
+let g:dashboard_default_executive ='telescope'
+nmap <Leader>ss :<C-u>SessionSave<CR>
+nmap <Leader>sl :<C-u>SessionLoad<CR>
+nnoremap <silent> <Leader>fh :DashboardFindHistory<CR>
+nnoremap <silent> <Leader>ff :DashboardFindFile<CR>
+nnoremap <silent> <Leader>tc :DashboardChangeColorscheme<CR>
+nnoremap <silent> <Leader>fa :DashboardFindWord<CR>
+nnoremap <silent> <Leader>fb :DashboardJumpMark<CR>
+nnoremap <silent> <Leader>cn :DashboardNewFile<CR>

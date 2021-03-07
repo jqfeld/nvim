@@ -84,4 +84,3 @@ nvim_lsp.rust_analyzer.setup{
 nvim_lsp.julials.setup{
   on_attach = on_attach
 }
-
