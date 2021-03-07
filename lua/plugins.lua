@@ -1,5 +1,5 @@
 -- This file can be loaded by calling `lua require('plugins')` from your init.vim
-
+-- auto install packer
 local execute = vim.api.nvim_command
 local fn = vim.fn
 
@@ -10,35 +10,30 @@ if fn.empty(fn.glob(install_path)) > 0 then
     execute 'packadd packer.nvim'
 end
 
-return require('packer').startup(function()
+return require('packer').startup{function()
     -- Packer can manage itself as an optional plugin
     use {'wbthomason/packer.nvim'}
 
 
-    
     -- Syle plugins
-    use {"npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
-    use {"romgrk/barbar.nvim", requires = {"kyazdani42/nvim-web-devicons"}}
+    use { "npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
+    use { "romgrk/barbar.nvim", requires = {"kyazdani42/nvim-web-devicons"}}
     use {
         'hoob3rt/lualine.nvim',
         requires = {'kyazdani42/nvim-web-devicons'}
     }
-
     use {
       'nvim-telescope/telescope.nvim',
       requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
     }
-
     use {
         'glepnir/dashboard-nvim',
         requires = {'nvim-telescope/telescope.nvim'}
     }
-
     use {
         'kyazdani42/nvim-tree.lua',
         requires = {'kyazdani42/nvim-web-devicons'}
     }
-
 
     -- Language support plugins
     use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'}
@@ -46,6 +41,7 @@ return require('packer').startup(function()
     use { 'neovim/nvim-lspconfig' }
     use { 'nvim-lua/lsp_extensions.nvim' }
     use { 'nvim-lua/completion-nvim' }
+    use { 'steelsojka/completion-buffers' }
     use { 'glepnir/lspsaga.nvim' }
     use { 'b3nj5m1n/kommentary' }
 
@@ -54,6 +50,8 @@ return require('packer').startup(function()
 
     -- Julia
     use { 'JuliaEditorSupport/julia-vim' }
+    use { 'hkupty/iron.nvim' }
+
 
     -- CSV
     use { 'chrisbra/csv.vim' }
@@ -61,6 +59,17 @@ return require('packer').startup(function()
     -- Git
     use { 'TimUntersberger/neogit' }
 
+    -- LaTeX
+    use { 'lervag/vimtex' }
 
-end)
+    -- Lua
+    use { 'tjdevries/nlua.nvim' }
+
+    -- Neuron / Note taking
+    use { 
+        "oberblastmeister/neuron.nvim",
+        requires = {{'nvim-lua/plenary.nvim'}, {'nvim-lua/popup.nvim'},
+                    {'nvim-telescope/telescope.nvim'}}
+        }
+end}
 

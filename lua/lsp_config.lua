@@ -12,7 +12,6 @@ local saga = require('lspsaga')
 
 saga.init_lsp_saga()
 
-
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -21,8 +20,6 @@ local on_attach = function(client, bufnr)
 
   -- Mappings.
   local opts = { noremap=true, silent=true }
-  --buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  --buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
   buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
@@ -84,3 +81,23 @@ nvim_lsp.rust_analyzer.setup{
 nvim_lsp.julials.setup{
   on_attach = on_attach
 }
+
+nvim_lsp.texlab.setup{
+    on_attach = on_attach
+}
+
+
+-- Your custom attach function for nvim-lspconfig goes here.
+local custom_nvim_lspconfig_attach = function(...) end
+
+-- To get builtin LSP running, do something like:
+-- NOTE: This replaces the calls where you would have before done `require('nvim_lsp').sumneko_lua.setup()`
+require('nlua.lsp.nvim').setup(require('lspconfig'), {
+  on_attach = custom_nvim_lspconfig_attach,
+
+  -- Include globals you want to tell the LSP are real :)
+  globals = {
+    -- Colorbuddy
+    "Color", "c", "Group", "g", "s",
+  }
+})
