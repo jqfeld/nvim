@@ -17,6 +17,7 @@ lua require('plugin_settings')
 "  " drop vi support - kept for vim compatibility but not needed for nvim
 set nocompatible
 
+set noswapfile
 "  " reload files changed outside of Vim not currently modified in Vim (needs
 "  below)
 "  http://stackoverflow.com/questions/2490227/how-does-vims-autoread-work#20418591
@@ -92,6 +93,7 @@ let mapleader = " "
 nmap <leader>fvd  :e $MYVIMRC<CR>
 nmap <leader>fvr  :source $MYVIMRC<CR>
 map <leader>h :noh<CR>
+tnoremap <Esc> <C-\><C-n>
 
 "" barbar.nvim
 nnoremap <silent> <Space>bd :BufferOrderByDirectory<CR>
