@@ -70,13 +70,14 @@ let g:completion_chain_complete_list = [
 set background=dark " or light if you want light mode
 colorscheme gruvbox
 
+set termguicolors
+
 set colorcolumn=80
 set cursorline
 set showmode showcmd
 set relativenumber 
 
 lua require('lualine').status()
-set termguicolors
 
 ""autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
 ""\ lua require'lsp_extensions'.inlay_hints{ 
@@ -145,3 +146,5 @@ let g:dashboard_custom_shortcut={
       \ 'book_marks'         : 'SPC f B',
       \ 'new_file'           : 'SPC c n',
       \ }
+
+nnoremap <silent> <Leader>gz :e ~/Dropbox/neuron/index.md<CR>

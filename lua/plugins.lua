@@ -66,11 +66,20 @@ return require('packer').startup{function(use)
     use { 'tjdevries/nlua.nvim' }
 
     -- Neuron / Note taking
-    use { 
+    --[[ use { 
         "oberblastmeister/neuron.nvim",
         requires = {{'nvim-lua/plenary.nvim'}, {'nvim-lua/popup.nvim'},
                     {'nvim-telescope/telescope.nvim'}},
         branch = "unstable",
+        } ]]
+
+    use { 
+        "jqfeld/neuron.nvim",
+        requires = {{'nvim-lua/plenary.nvim'}, {'nvim-lua/popup.nvim'},
+                    {'nvim-telescope/telescope.nvim'}},
+        branch = "on-exit-callback",
         }
+
+
 end}
 
