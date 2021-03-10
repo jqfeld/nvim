@@ -77,7 +77,7 @@ return require('packer').startup{function(use)
         "jqfeld/neuron.nvim",
         requires = {{'nvim-lua/plenary.nvim'}, {'nvim-lua/popup.nvim'},
                     {'nvim-telescope/telescope.nvim'}},
-        branch = "on-exit-callback",
+        branch = "win_compat",
         }
 
 

@@ -65,6 +65,10 @@ let g:completion_chain_complete_list = [
     \{'mode': '<c-n>'}
 \]
 
+if has('win32')
+    set shell=powershell
+endif
+
 "" Style
 "" -------------------------
 set background=dark " or light if you want light mode
@@ -75,7 +79,7 @@ set termguicolors
 set colorcolumn=80
 set cursorline
 set showmode showcmd
-set relativenumber 
+set number relativenumber 
 
 lua require('lualine').status()
 
