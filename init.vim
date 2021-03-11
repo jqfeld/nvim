@@ -160,4 +160,4 @@ let g:dashboard_custom_shortcut={
 nnoremap <silent> <Leader>gz :e ~/Dropbox/neuron/index.md<CR>
 
 " Neogit
-nnoremap <silent> <Leader>gg <cmd>lua require'neogit'.status.create('floating')<CR>
+nnoremap <silent> <Leader>gg <cmd>lua require'neogit'.status.create('tab')<CR>
