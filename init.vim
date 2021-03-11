@@ -71,7 +71,7 @@ if has('win32')
 endif
 
 if has('unix')
-    let g:vimtex_view_general_viewer = 'zathura'
+    let g:vimtex_view_general_viewer = 'mupdf'
 endif
 
 "" Style
@@ -130,6 +130,7 @@ nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 "" NvimTree
+let g:nvim_tree_hide_dotfiles = 1
 nnoremap <C-n> :NvimTreeToggle<CR>
 nnoremap <leader>r :NvimTreeRefresh<CR>
 nnoremap <leader>n :NvimTreeFindFile<CR>
@@ -157,3 +158,6 @@ let g:dashboard_custom_shortcut={
       \ }
 
 nnoremap <silent> <Leader>gz :e ~/Dropbox/neuron/index.md<CR>
+
+" Neogit
+nnoremap <silent> <Leader>gg <cmd>lua require'neogit'.status.create('floating')<CR>
