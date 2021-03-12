@@ -1,5 +1,7 @@
 :GuiTabline 0
-:GuiFont SauceCodePro NF
+:GuiFont FiraCode Nerd Font Mono:h11
+:GuiRenderLigatures 1
 :GuiPopupmenu 0
+
 
 

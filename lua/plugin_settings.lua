@@ -12,7 +12,7 @@ iron.core.set_config {
   preferred = {
     julia = "julia_file"
   },
-  repl_open_cmd = "rightbelow vsplit"
+  repl_open_cmd = "rightbelow split"
 }
 
 require('neuron').setup {

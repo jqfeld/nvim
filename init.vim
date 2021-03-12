@@ -60,7 +60,7 @@ set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 
 let g:completion_chain_complete_list = [
-    \{'complete_items': ['lsp', 'path','snippet', 'buffers']},
+    \{'complete_items': ['lsp', 'path','snippet']},
     \{'mode': '<c-p>'},
     \{'mode': '<c-n>'}
 \]
