@@ -17,6 +17,7 @@ return require('packer').startup{function(use)
 
     -- Syle plugins
     use { "npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
+    use { "kyazdani42/nvim-web-devicons" }
     use { "romgrk/barbar.nvim", requires = {"kyazdani42/nvim-web-devicons"}}
     use {
         'hoob3rt/lualine.nvim',

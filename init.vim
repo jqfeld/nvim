@@ -24,6 +24,7 @@ set noswapfile
 set autoread
 au FocusGained,BufEnter * :silent! !
 
+
 set encoding=utf-8
 
 set visualbell
@@ -66,7 +67,7 @@ let g:completion_chain_complete_list = [
 \]
 
 if has('win32')
-    set shell=powershell
+    ""set shell=powershell
     let g:vimtex_view_general_viewer = 'mupdf'
 endif
 
@@ -161,3 +162,4 @@ nnoremap <silent> <Leader>gz :e ~/Dropbox/neuron/index.md<CR>
 
 " Neogit
 nnoremap <silent> <Leader>gg <cmd>lua require'neogit'.status.create('tab')<CR>
+
