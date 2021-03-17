@@ -37,7 +37,7 @@ return require('packer').startup{function(use)
     }
 
     -- Language support plugins
-    use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'}
+    use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install'}
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     use { 'neovim/nvim-lspconfig' }
     use { 'nvim-lua/lsp_extensions.nvim' }

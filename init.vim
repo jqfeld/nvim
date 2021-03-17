@@ -72,7 +72,7 @@ if has('win32')
 endif
 
 if has('unix')
-    let g:vimtex_view_general_viewer = 'mupdf'
+    let g:vimtex_view_general_viewer = 'zathura'
 endif
 
 "" Style
