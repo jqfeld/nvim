@@ -130,12 +130,15 @@ nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 "" NvimTree
-let g:nvim_tree_hide_dotfiles = 1
-nnoremap <C-n> :NvimTreeToggle<CR>
-nnoremap <leader>r :NvimTreeRefresh<CR>
-nnoremap <leader>n :NvimTreeFindFile<CR>
+" let g:nvim_tree_hide_dotfiles = 1
+" nnoremap <C-n> :NvimTreeToggle<CR>
+" nnoremap <leader>r :NvimTreeRefresh<CR>
+" nnoremap <leader>n :NvimTreeFindFile<CR>
 " NvimTreeOpen and NvimTreeClose are also available if you need them
-"
+
+"" Chadtree
+nnoremap <LEADER>v <CMD>CHADopen<CR>
+
 "
 "" Dashboard
 let g:dashboard_default_executive ='telescope'

@@ -46,7 +46,7 @@ return require('packer').startup{function(use)
           lualine_y = {  },
           lualine_z = {   }
         },
-        extensions = { 'nvim-tree' }
+        extensions = { 'chadtree' },
       }
     end
     }
@@ -58,10 +58,12 @@ return require('packer').startup{function(use)
         'glepnir/dashboard-nvim',
         requires = {'nvim-telescope/telescope.nvim'}
     }
-    use {
+    --[[ use {
         'kyazdani42/nvim-tree.lua',
         requires = {'kyazdani42/nvim-web-devicons'}
-    }
+    } ]]
+
+    use { 'ms-jpq/chadtree', run = ':CHADdeps' }
 
     -- Language support plugins
     use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install'}
