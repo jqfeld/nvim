@@ -58,16 +58,37 @@ return require('packer').startup{function(use)
         'glepnir/dashboard-nvim',
         requires = {'nvim-telescope/telescope.nvim'}
     }
-    --[[ use {
-        'kyazdani42/nvim-tree.lua',
-        requires = {'kyazdani42/nvim-web-devicons'}
-    } ]]
 
-    use { 'ms-jpq/chadtree', run = ':CHADdeps' }
+    use {
+      "folke/todo-comments.nvim",
+      config = function()
+        require("todo-comments").setup {
+          -- your configuration comes here
+          -- or leave it empty to use the default settings
+          -- refer to the configuration section below
+        }
+      end
+    }
+
+    use { 'yamatsum/nvim-cursorline',
+        config = function()
+            vim.g.cursorword_highlight = 1
+        end
+    }
 
     -- Language support plugins
     use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install'}
-    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+    use { 'nvim-treesitter/nvim-treesitter', 
+        run = ':TSUpdate',
+        config = function()
+            require'nvim-treesitter.configs'.setup {
+                ensure_installed = {"julia", "rust", "lua", "c"},
+                highlight = {
+                    enable = true,
+                }
+            }
+        end
+    }
     use { 'neovim/nvim-lspconfig' }
     use { 'nvim-lua/lsp_extensions.nvim' }
     use { 'nvim-lua/completion-nvim' }
@@ -87,13 +108,17 @@ return require('packer').startup{function(use)
     use { 'chrisbra/csv.vim' }
 
     -- Git
-    use { 'TimUntersberger/neogit' }
+    use { 'TimUntersberger/neogit',
+        config = function()
+            require'neogit'.setup {}
+        end
+    }
 
     -- LaTeX
     use { 'lervag/vimtex' }
 
     -- Lua
-    --use { 'tjdevries/nlua.nvim' }
+    use { 'tjdevries/nlua.nvim' }
 
     -- Neuron / Note taking
     --[[ use { 
@@ -110,6 +135,9 @@ return require('packer').startup{function(use)
         branch = "win_compat",
         }
 
+
+    -- Dev projects
+    use { '~/projects/julia.nvim' }
 
 end}
 

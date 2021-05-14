@@ -12,6 +12,7 @@ set mouse=a
 lua require('plugins')
 lua require('lsp_config')
 lua require('plugin_settings')
+lua require('init')
 
 "" Behaviour
 "  " drop vi support - kept for vim compatibility but not needed for nvim
@@ -85,7 +86,7 @@ set termguicolors
 set colorcolumn=80
 set cursorline
 set showmode showcmd
-set number relativenumber 
+set number "relativenumber 
 
 
 ""autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
@@ -124,7 +125,7 @@ nnoremap <silent>    <A-9> :BufferLast<CR>
 nnoremap <silent>    <A-c> :BufferClose<CR>
 
 "" Telescope.nvim
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fe <cmd>Telescope file_browser<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
@@ -137,7 +138,7 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 " NvimTreeOpen and NvimTreeClose are also available if you need them
 
 "" Chadtree
-nnoremap <LEADER>v <CMD>CHADopen<CR>
+"" nnoremap <LEADER>v <CMD>CHADopen<CR>
 
 "
 "" Dashboard
@@ -152,7 +153,7 @@ nnoremap <silent> <Leader>fB :DashboardJumpMark<CR>
 nnoremap <silent> <Leader>cn :DashboardNewFile<CR>
 let g:dashboard_custom_shortcut={
       \ 'last_session'       : 'SPC s l',
-      \ 'find_history'       : 'SPC f h',
+      \ 'find_history'       : 'SPC f v',
       \ 'find_file'          : 'SPC f f',
       \ 'change_colorscheme' : 'SPC t c',
       \ 'find_word'          : 'SPC f a',
@@ -164,4 +165,6 @@ nnoremap <silent> <Leader>gz :e ~/Dropbox/neuron/index.md<CR>
 
 " Neogit
 nnoremap <silent> <Leader>gg <cmd>lua require'neogit'.status.create('tab')<CR>
+
+
 
