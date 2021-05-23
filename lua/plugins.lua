@@ -138,6 +138,7 @@ return require('packer').startup{function(use)
 
     -- Dev projects
     use { '~/projects/julia.nvim' }
+    use { 'jqfeld/watson.nvim' }
 
 end}
 
