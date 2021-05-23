@@ -129,6 +129,7 @@ nnoremap <leader>fe <cmd>Telescope file_browser<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>ft <cmd>Telescope treesitter<cr>
 
 "" NvimTree
 " let g:nvim_tree_hide_dotfiles = 1
@@ -166,5 +167,8 @@ nnoremap <silent> <Leader>gz :e ~/Dropbox/neuron/index.md<CR>
 " Neogit
 nnoremap <silent> <Leader>gg <cmd>lua require'neogit'.status.create('tab')<CR>
 
+" Todo-comments
+nnoremap <silent> <Leader>tt :TodoTelescope <CR>
+nnoremap <silent> <Leader>tf :TodoQuickFix <CR>
 
 

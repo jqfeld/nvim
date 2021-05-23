@@ -1,6 +1,6 @@
 :GuiTabline 0
 if has("unix")
-    set guifont=FiraCode\ Nerd\ Font\ Mono:h11
+    set guifont=Fira\ Code:h11
     :GuiRenderLigatures 1
 else
     set guifont=FiraCode\ NF:h11
@@ -8,6 +8,7 @@ else
     " nvim-qt...
 end
 :GuiPopupmenu 0
+
 
 
 
