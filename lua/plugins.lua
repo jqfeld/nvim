@@ -138,7 +138,10 @@ return require('packer').startup{function(use)
 
     -- Dev projects
     use { '~/projects/julia.nvim' }
-    use { 'jqfeld/watson.nvim' }
+    use { 'jqfeld/watson.nvim', 
+        requires = {{'nvim-lua/plenary.nvim'}, {'nvim-lua/popup.nvim'},
+                    {'nvim-telescope/telescope.nvim'}},
+    }
 
 end}
 

@@ -172,3 +172,5 @@ nnoremap <silent> <Leader>tt :TodoTelescope <CR>
 nnoremap <silent> <Leader>tf :TodoQuickFix <CR>
 
 
+" Watson keybinds
+nnoremap <silent> <Leader>wd :lua R('watson'); require('watson/telescope').find_data()<CR>
