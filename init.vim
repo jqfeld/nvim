@@ -132,11 +132,10 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>ft <cmd>Telescope treesitter<cr>
 
 "" NvimTree
-" let g:nvim_tree_hide_dotfiles = 1
-" nnoremap <C-n> :NvimTreeToggle<CR>
-" nnoremap <leader>r :NvimTreeRefresh<CR>
-" nnoremap <leader>n :NvimTreeFindFile<CR>
-" NvimTreeOpen and NvimTreeClose are also available if you need them
+let g:nvim_tree_hide_dotfiles = 1
+nnoremap <C-n> :NvimTreeToggle<CR>
+nnoremap <leader>r :NvimTreeRefresh<CR>
+nnoremap <leader>n :NvimTreeFindFile<CR>
 
 "" Chadtree
 "" nnoremap <LEADER>v <CMD>CHADopen<CR>

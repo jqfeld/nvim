@@ -76,6 +76,8 @@ return require('packer').startup{function(use)
         end
     }
 
+    use { 'kyazdani42/nvim-tree.lua' }
+
     -- Language support plugins
     use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install'}
     use { 'nvim-treesitter/nvim-treesitter', 
