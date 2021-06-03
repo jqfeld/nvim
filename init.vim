@@ -133,9 +133,11 @@ nnoremap <leader>ft <cmd>Telescope treesitter<cr>
 
 "" NvimTree
 let g:nvim_tree_hide_dotfiles = 1
+let g:nvim_tree_disable_netrw = 0
 nnoremap <C-n> :NvimTreeToggle<CR>
 nnoremap <leader>r :NvimTreeRefresh<CR>
 nnoremap <leader>n :NvimTreeFindFile<CR>
+
 
 "" Chadtree
 "" nnoremap <LEADER>v <CMD>CHADopen<CR>
@@ -170,6 +172,9 @@ nnoremap <silent> <Leader>gg <cmd>lua require'neogit'.status.create('tab')<CR>
 nnoremap <silent> <Leader>tt :TodoTelescope <CR>
 nnoremap <silent> <Leader>tf :TodoQuickFix <CR>
 
+" FTerm
+nnoremap <silent> <A-i> <CMD>lua require'FTerm'.toggle()<CR>
+tnoremap <silent> <A-i> <C-\><C-n><CMD>lua require'FTerm'.toggle()<CR>
 
 " Watson keybinds
 nnoremap <silent> <Leader>wd :lua R('watson'); require('watson/telescope').find_data()<CR>
