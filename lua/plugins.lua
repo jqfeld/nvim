@@ -79,7 +79,7 @@ return require('packer').startup{function(use)
     use { 'kyazdani42/nvim-tree.lua' }
 
     use {
-        "numtostr/FTerm.nvim",
+        "jqfeld/FTerm.nvim",
         config = function()
             require("FTerm").setup({
                 dimensions = {

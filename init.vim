@@ -68,7 +68,7 @@ let g:completion_chain_complete_list = [
 \]
 
 if has('win32')
-    ""set shell=powershell
+    set shell=powershell
     let g:vimtex_view_general_viewer = 'mupdf'
 endif
 
