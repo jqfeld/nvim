@@ -10,6 +10,14 @@ if fn.empty(fn.glob(install_path)) > 0 then
     execute 'packadd packer.nvim'
 end
 
+-- HACK: Some problems with packer during first start of neovim -> uncomment this
+-- after plugins are installed display can be set interactive again
+--[[ require('packer').init({
+    display = {
+        non_interactive = true,
+    }
+}) ]]
+
 return require('packer').startup{function(use)
     -- Packer can manage itself as an optional plugin
     use {'wbthomason/packer.nvim'}
@@ -145,13 +153,13 @@ return require('packer').startup{function(use)
         branch = "unstable",
         } ]]
 
-    use { 
+    --[[ use { 
         "jqfeld/neuron.nvim",
         requires = {{'nvim-lua/plenary.nvim'}, {'nvim-lua/popup.nvim'},
                     {'nvim-telescope/telescope.nvim'}},
         branch = "win_compat",
         }
-
+ ]]
 
     -- Dev projects
     use { '~/projects/julia.nvim' }
