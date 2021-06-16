@@ -130,7 +130,7 @@ return require('packer').startup{function(use)
 
 
     -- CSV
-    use { 'chrisbra/csv.vim' }
+    -- use { 'chrisbra/csv.vim' }
 
     -- Git
     use { 'TimUntersberger/neogit',
