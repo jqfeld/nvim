@@ -89,13 +89,6 @@ set showmode showcmd
 set number "relativenumber 
 
 
-""autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
-""\ lua require'lsp_extensions'.inlay_hints{ 
-""\  prefix = '<==', 
-""\  highlight = "Comment", 
-""\  enabled = {"TypeHint", "ChainingHint", "ParameterHint"},
-""\  only_current_line = true
-""\  }
 
 "" Keymaps
 "" -------------------------
@@ -105,6 +98,12 @@ nmap <leader>fcd  :e $MYVIMRC<CR>
 nmap <leader>fcr  :source $MYVIMRC<CR>
 map <leader>h :noh<CR>
 tnoremap <Esc> <C-\><C-n>
+
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
 
 "" barbar.nvim
 nnoremap <silent> <Space>bd :BufferOrderByDirectory<CR>
@@ -130,6 +129,7 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>ft <cmd>Telescope treesitter<cr>
+nnoremap <leader>fr <cmd>Telescope git_files<cr>
 
 "" NvimTree
 let g:nvim_tree_hide_dotfiles = 1
@@ -138,9 +138,6 @@ nnoremap <C-n> :NvimTreeToggle<CR>
 nnoremap <leader>r :NvimTreeRefresh<CR>
 nnoremap <leader>n :NvimTreeFindFile<CR>
 
-
-"" Chadtree
-"" nnoremap <LEADER>v <CMD>CHADopen<CR>
 
 "
 "" Dashboard
