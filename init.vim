@@ -9,10 +9,10 @@
 let g:nvim_config_root = stdpath('config')
 set mouse=a
 
-lua require('plugins')
-lua require('lsp_config')
-lua require('plugin_settings')
 lua require('init')
+lua R('plugins')
+lua R('lsp_config')
+lua R('plugin_settings')
 
 "" Behaviour
 "  " drop vi support - kept for vim compatibility but not needed for nvim
@@ -124,12 +124,12 @@ nnoremap <silent>    <A-9> :BufferLast<CR>
 nnoremap <silent>    <A-c> :BufferClose<CR>
 
 "" Telescope.nvim
-nnoremap <leader>fe <cmd>Telescope file_browser<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-nnoremap <leader>ft <cmd>Telescope treesitter<cr>
-nnoremap <leader>fr <cmd>Telescope git_files<cr>
+nnoremap <leader>fe <cmd>lua require("telescope.builtin").file_browser()<cr>
+nnoremap <leader>fb <cmd>lua require("telescope.builtin").buffers()<cr>
+nnoremap <leader>fh <cmd>lua require("telescope.builtin").help_tags()<cr>
+nnoremap <leader>ft <cmd>lua require("telescope.builtin").treesitter()<cr>
+nnoremap <leader>fg <cmd>lua require("telescope.builtin").git_files()<cr>
+nnoremap <leader>fp <cmd>lua require("telescope.builtin").find_files({cwd="~/.local/share/nvim/site/pack/packer/start"})<cr>
 
 "" NvimTree
 let g:nvim_tree_hide_dotfiles = 1
@@ -160,7 +160,7 @@ let g:dashboard_custom_shortcut={
       \ 'new_file'           : 'SPC c n',
       \ }
 
-nnoremap <silent> <Leader>gz :e ~/Dropbox/neuron/index.md<CR>
+" nnoremap <silent> <Leader>gz :e ~/Dropbox/neuron/index.md<CR>
 
 " Neogit
 nnoremap <silent> <Leader>gg <cmd>lua require'neogit'.status.create('tab')<CR>
@@ -174,4 +174,4 @@ nnoremap <silent> <A-i> <CMD>lua require'FTerm'.toggle()<CR>
 tnoremap <silent> <A-i> <C-\><C-n><CMD>lua require'FTerm'.toggle()<CR>
 
 " Watson keybinds
-nnoremap <silent> <Leader>wd :lua R('watson'); require('watson/telescope').find_data()<CR>
+nnoremap <silent> <Leader>wd :lua R('watson'); require('watson').find_data()<CR>

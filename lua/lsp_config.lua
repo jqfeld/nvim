@@ -35,7 +35,7 @@ local on_attach = function(client, bufnr)
 
   -- Lspsaga keybindings
   buf_set_keymap('n', '<leader>lh', '<Cmd>lua require\'lspsaga.provider\'.lsp_finder()<CR>', opts)
-  -- buf_set_keymap('n', '<leader>lk', '<Cmd>lua require(\'lspsaga.hover\').render_hover_doc()<CR>', opts)
+  buf_set_keymap('n', '<leader>lk', '<Cmd>lua require(\'lspsaga.hover\').render_hover_doc()<CR>', opts)
   buf_set_keymap('n', '<leader>ls', '<Cmd>lua require\'lspsaga.signaturehelp\'.signature_help()<CR>', opts)
   buf_set_keymap('n', '<leader>la', '<Cmd>lua require\'lspsaga.codeaction\'.code_action()<CR>', opts)
   buf_set_keymap('v', '<leader>la', '<Cmd>lua\'<,\'> require\'lspsaga.codeaction\'.range_code_action()<CR>', opts)
@@ -49,9 +49,9 @@ local on_attach = function(client, bufnr)
 
   -- Set some keybinds conditional on server capabilities
   if client.resolved_capabilities.document_formatting then
-    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    buf_set_keymap("n", "<space>lf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
   elseif client.resolved_capabilities.document_range_formatting then
-    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
+    buf_set_keymap("n", "<space>lf", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
   end
 
   -- Set autocommands conditional on server_capabilities
