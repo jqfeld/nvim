@@ -84,7 +84,7 @@ return require('packer').startup{function(use)
         end
     }
 
-    use { 'kyazdani42/nvim-tree.lua' }
+    -- use { 'kyazdani42/nvim-tree.lua' }
 
     use {
         "jqfeld/FTerm.nvim",
@@ -99,6 +99,11 @@ return require('packer').startup{function(use)
                 border = 'single'
             })
         end
+    }
+
+    use {
+        "jqfeld/FTerm-nnn.nvim",
+        requires = { "jqfeld/FTerm.nvim" }
     }
 
     -- Language support plugins

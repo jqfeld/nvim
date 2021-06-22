@@ -13,6 +13,7 @@ lua require('init')
 lua R('plugins')
 lua R('lsp_config')
 lua R('plugin_settings')
+" lua R('custom_terms')
 
 "" Behaviour
 "  " drop vi support - kept for vim compatibility but not needed for nvim
@@ -39,6 +40,7 @@ set hlsearch incsearch ignorecase smartcase
 set nowrap
 set autochdir
 set hidden
+set inccommand=split
 
 " Use system clipboard
 set clipboard=unnamedplus
@@ -47,6 +49,8 @@ set splitbelow
 set splitright
 
 " Autocompletion
+
+
 autocmd BufEnter * lua require'completion'.on_attach()
 
 let g:completion_enable_auto_popup = 1
@@ -132,11 +136,21 @@ nnoremap <leader>fg <cmd>lua require("telescope.builtin").git_files()<cr>
 nnoremap <leader>fp <cmd>lua require("telescope.builtin").find_files({cwd="~/.local/share/nvim/site/pack/packer/start"})<cr>
 
 "" NvimTree
-let g:nvim_tree_hide_dotfiles = 1
-let g:nvim_tree_disable_netrw = 0
-nnoremap <C-n> :NvimTreeToggle<CR>
-nnoremap <leader>r :NvimTreeRefresh<CR>
-nnoremap <leader>n :NvimTreeFindFile<CR>
+" let g:nvim_tree_hide_dotfiles = 1
+" let g:nvim_tree_disable_netrw = 0
+" nnoremap <C-n> :NvimTreeToggle<CR>
+" nnoremap <leader>r :NvimTreeRefresh<CR>
+" nnoremap <leader>n :NvimTreeFindFile<CR>
+"
+"" NNN
+lua R('FTerm-nnn').setup({env="ICONLOOKUP=1"})
+nnoremap <LEADER>nn <CMD>lua require("FTerm-nnn").nnn_toggle()<CR>
+nnoremap <LEADER>nv <CMD>lua require("FTerm-nnn").nnn_vs_toggle()<CR>
+nnoremap <LEADER>nh <CMD>lua require("FTerm-nnn").nnn_hs_toggle()<CR>
+
+" nnoremap <leader>r :NvimTreeRefresh<CR>
+" nnoremap <leader>n :NvimTreeFindFile<CR>
+
 
 
 "
@@ -172,6 +186,7 @@ nnoremap <silent> <Leader>tf :TodoQuickFix <CR>
 " FTerm
 nnoremap <silent> <A-i> <CMD>lua require'FTerm'.toggle()<CR>
 tnoremap <silent> <A-i> <C-\><C-n><CMD>lua require'FTerm'.toggle()<CR>
+
 
 " Watson keybinds
 nnoremap <silent> <Leader>wd :lua R('watson'); require('watson').find_data()<CR>
