@@ -13,7 +13,6 @@ lua require('init')
 lua R('plugins')
 lua R('lsp_config')
 lua R('plugin_settings')
-" lua R('custom_terms')
 
 "" Behaviour
 "  " drop vi support - kept for vim compatibility but not needed for nvim
@@ -60,7 +59,7 @@ inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " Set completeopt to have a better completion experience
-set completeopt=menuone,noinsert,noselect
+set completeopt=menuone,noselect
 
 " Avoid showing message extra message when using completion
 set shortmess+=c
