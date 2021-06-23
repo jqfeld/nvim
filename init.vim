@@ -48,9 +48,7 @@ set splitbelow
 set splitright
 
 " Autocompletion
-
-
-autocmd BufEnter * lua require'completion'.on_attach()
+" autocmd BufEnter * lua require'completion'.on_attach()
 
 let g:completion_enable_auto_popup = 1
 
@@ -102,10 +100,15 @@ nmap <leader>fcr  :source $MYVIMRC<CR>
 map <leader>h :noh<CR>
 tnoremap <Esc> <C-\><C-n>
 
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nnoremap <C-L> <C-W>l
+nnoremap <C-H> <C-W>h
+
+nnoremap <C-A-J> <C-W>J
+nnoremap <C-A-K> <C-W>K
+nnoremap <C-A-L> <C-W>L
+nnoremap <C-A-H> <C-W>H
 
 
 "" barbar.nvim
@@ -129,10 +132,12 @@ nnoremap <silent>    <A-c> :BufferClose<CR>
 "" Telescope.nvim
 nnoremap <leader>fe <cmd>lua require("telescope.builtin").file_browser()<cr>
 nnoremap <leader>fb <cmd>lua require("telescope.builtin").buffers()<cr>
-nnoremap <leader>fh <cmd>lua require("telescope.builtin").help_tags()<cr>
+nnoremap <leader>fH <cmd>lua require("telescope.builtin").help_tags()<cr>
 nnoremap <leader>ft <cmd>lua require("telescope.builtin").treesitter()<cr>
 nnoremap <leader>fg <cmd>lua require("telescope.builtin").git_files()<cr>
-nnoremap <leader>fp <cmd>lua require("telescope.builtin").find_files({cwd="~/.local/share/nvim/site/pack/packer/start"})<cr>
+nnoremap <leader>fP <cmd>lua require("telescope.builtin").find_files({cwd="~/.local/share/nvim/site/pack/packer/start"})<cr>
+nnoremap <leader>fh <cmd>lua require("telescope.builtin").find_files({cwd="~/"})<cr>
+nnoremap <leader>fp <cmd>lua require("telescope.builtin").find_files({cwd="~/projects"})<cr>
 
 "" NvimTree
 " let g:nvim_tree_hide_dotfiles = 1
