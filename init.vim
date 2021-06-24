@@ -14,6 +14,7 @@ lua R('plugins')
 lua R('lsp_config')
 lua R('plugin_settings')
 
+
 "" Behaviour
 "  " drop vi support - kept for vim compatibility but not needed for nvim
 set nocompatible
@@ -48,13 +49,15 @@ set splitbelow
 set splitright
 
 " Autocompletion
-" autocmd BufEnter * lua require'completion'.on_attach()
 
 let g:completion_enable_auto_popup = 1
+let g:completion_enable_auto_signature = 0
+imap <tab> <Plug>(completion_smart_tab)
+imap <s-tab> <Plug>(completion_smart_s_tab)
 
 " Use <Tab> and <S-Tab> to navigate through popup menu
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noselect

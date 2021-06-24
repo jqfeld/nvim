@@ -84,8 +84,6 @@ return require('packer').startup{function(use)
         end
     }
 
-    -- use { 'kyazdani42/nvim-tree.lua' }
-
     use {
         "jqfeld/FTerm.nvim",
         config = function()
@@ -107,7 +105,6 @@ return require('packer').startup{function(use)
     }
 
     -- Language support plugins
-    use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install'}
     use { 'nvim-treesitter/nvim-treesitter', 
         run = ':TSUpdate',
         config = function()
@@ -119,11 +116,15 @@ return require('packer').startup{function(use)
             }
         end
     }
+
     use { 'neovim/nvim-lspconfig' }
     use { 'nvim-lua/lsp_extensions.nvim' }
     use { 'nvim-lua/completion-nvim' }
     use { 'steelsojka/completion-buffers' }
-    use { 'glepnir/lspsaga.nvim' }
+    -- use { 'glepnir/lspsaga.nvim' }
+    use { 'ray-x/lsp_signature.nvim' }
+    use { 'ray-x/navigator.lua', requires = {'ray-x/guihua.lua', run = 'cd lua/fzy && make'}}
+
     use { 'b3nj5m1n/kommentary' }
 
     -- Rust
@@ -135,7 +136,6 @@ return require('packer').startup{function(use)
 
 
     -- CSV
-    -- use { 'chrisbra/csv.vim' }
 
     -- Git
     use { 'TimUntersberger/neogit',
@@ -148,26 +148,10 @@ return require('packer').startup{function(use)
     use { 'lervag/vimtex' }
 
     -- Lua
-    use { 'tjdevries/nlua.nvim' }
+    -- use { 'tjdevries/nlua.nvim' }
 
-    -- Neuron / Note taking
-    --[[ use { 
-        "oberblastmeister/neuron.nvim",
-        requires = {{'nvim-lua/plenary.nvim'}, {'nvim-lua/popup.nvim'},
-                    {'nvim-telescope/telescope.nvim'}},
-        branch = "unstable",
-        } ]]
-
-    --[[ use { 
-        "jqfeld/neuron.nvim",
-        requires = {{'nvim-lua/plenary.nvim'}, {'nvim-lua/popup.nvim'},
-                    {'nvim-telescope/telescope.nvim'}},
-        branch = "win_compat",
-        }
- ]]
 
     -- Dev projects
-    use { '~/projects/julia.nvim' }
     use { 'jqfeld/watson.nvim', 
         requires = {{'nvim-lua/plenary.nvim'}, {'nvim-lua/popup.nvim'},
                     {'nvim-telescope/telescope.nvim'}},
