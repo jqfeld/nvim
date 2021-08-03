@@ -1,3 +1,3 @@
 let maplocalleader = " " 
-nmap <buffer> b :Cbuild<CR>
-nmap <buffer> r :Crun<CR>
+nmap <buffer> <localleader>b :Cbuild<CR>
+nmap <buffer> <localleader>r :Crun<CR>

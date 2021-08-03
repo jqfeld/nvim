@@ -118,7 +118,7 @@ return require('packer').startup{function(use)
     }
 
     use { 'neovim/nvim-lspconfig' }
-    use { 'nvim-lua/lsp_extensions.nvim' }
+    -- use { 'nvim-lua/lsp_extensions.nvim' }
     use { 'nvim-lua/completion-nvim' }
     use { 'steelsojka/completion-buffers' }
     -- use { 'glepnir/lspsaga.nvim' }
