@@ -142,22 +142,6 @@ nnoremap <leader>fP <cmd>lua require("telescope.builtin").find_files({cwd="~/.lo
 nnoremap <leader>fh <cmd>lua require("telescope.builtin").find_files({cwd="~/"})<cr>
 nnoremap <leader>fp <cmd>lua require("telescope.builtin").find_files({cwd="~/projects"})<cr>
 
-"" NvimTree
-" let g:nvim_tree_hide_dotfiles = 1
-" let g:nvim_tree_disable_netrw = 0
-" nnoremap <C-n> :NvimTreeToggle<CR>
-" nnoremap <leader>r :NvimTreeRefresh<CR>
-" nnoremap <leader>n :NvimTreeFindFile<CR>
-"
-"" NNN
-lua R('FTerm-nnn').setup({env="ICONLOOKUP=1"})
-nnoremap <LEADER>nn <CMD>lua require("FTerm-nnn").nnn_toggle()<CR>
-nnoremap <LEADER>nv <CMD>lua require("FTerm-nnn").nnn_vs_toggle()<CR>
-nnoremap <LEADER>nh <CMD>lua require("FTerm-nnn").nnn_hs_toggle()<CR>
-
-" nnoremap <leader>r :NvimTreeRefresh<CR>
-" nnoremap <leader>n :NvimTreeFindFile<CR>
-
 
 
 "
@@ -193,6 +177,12 @@ nnoremap <silent> <Leader>tf :TodoQuickFix <CR>
 " FTerm
 nnoremap <silent> <A-i> <CMD>lua require'FTerm'.toggle()<CR>
 tnoremap <silent> <A-i> <C-\><C-n><CMD>lua require'FTerm'.toggle()<CR>
+"
+"" NNN
+lua R('FTerm-nnn').setup({env="ICONLOOKUP=1"})
+nnoremap <LEADER>nn <CMD>lua require("FTerm-nnn").nnn_toggle()<CR>
+nnoremap <LEADER>nv <CMD>lua require("FTerm-nnn").nnn_vs_toggle()<CR>
+nnoremap <LEADER>nh <CMD>lua require("FTerm-nnn").nnn_hs_toggle()<CR>
 
 
 " Watson keybinds

@@ -99,10 +99,12 @@ return require('packer').startup{function(use)
         end
     }
 
-    use {
-        "jqfeld/FTerm-nnn.nvim",
-        requires = { "jqfeld/FTerm.nvim" }
-    }
+    if vim.api.nvim_call_function('has',{"unix"}) then
+        use {
+            "jqfeld/FTerm-nnn.nvim",
+            requires = { "jqfeld/FTerm.nvim" },
+        }
+    end
 
     -- Language support plugins
     use { 'nvim-treesitter/nvim-treesitter', 
@@ -118,10 +120,8 @@ return require('packer').startup{function(use)
     }
 
     use { 'neovim/nvim-lspconfig' }
-    -- use { 'nvim-lua/lsp_extensions.nvim' }
     use { 'nvim-lua/completion-nvim' }
     use { 'steelsojka/completion-buffers' }
-    -- use { 'glepnir/lspsaga.nvim' }
     use { 'ray-x/lsp_signature.nvim' }
     use { 'ray-x/navigator.lua', requires = {'ray-x/guihua.lua', run = 'cd lua/fzy && make'}}
 
