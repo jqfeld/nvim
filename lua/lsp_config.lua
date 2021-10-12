@@ -52,21 +52,21 @@ local julia_cmd = {
       ]],
 }
 
-require'navigator'.setup({
-    on_attach = function()
-        require'lsp_signature'.on_attach()
-        require'completion'.on_attach()
-    end,
-    lsp = {
-        format_on_save = true,
-        julials = {
-            cmd = julia_cmd,
-            on_new_config = function(new_config, _)
-                new_config.cmd =julia_cmd
-            end
-        }
-    }
-})
+-- require'navigator'.setup({
+--     on_attach = function()
+--         require'lsp_signature'.on_attach()
+--         require'completion'.on_attach()
+--     end,
+--     lsp = {
+--         format_on_save = true,
+--         julials = {
+--             cmd = julia_cmd,
+--             on_new_config = function(new_config, _)
+--                 new_config.cmd =julia_cmd
+--             end
+--         }
+--     }
+-- })
 
 
 

@@ -83,7 +83,8 @@ endif
 "" Style
 "" -------------------------
 set background=dark " or light if you want light mode
-colorscheme gruvbox
+let g:gruvbox_material_enable_italic = 1
+colorscheme gruvbox-material
 
 set termguicolors
 

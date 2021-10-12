@@ -24,7 +24,8 @@ return require('packer').startup{function(use)
 
 
     -- Syle plugins
-    use { "npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
+    -- use { "npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
+    use { "sainnhe/gruvbox-material"}
     use { "kyazdani42/nvim-web-devicons" }
     use { "romgrk/barbar.nvim", requires = {"kyazdani42/nvim-web-devicons"}}
     use {
@@ -136,6 +137,7 @@ return require('packer').startup{function(use)
 
 
     -- CSV
+    use { 'dhruvasagar/vim-table-mode' }
 
     -- Git
     use { 'TimUntersberger/neogit',
@@ -156,6 +158,7 @@ return require('packer').startup{function(use)
         requires = {{'nvim-lua/plenary.nvim'}, {'nvim-lua/popup.nvim'},
                     {'nvim-telescope/telescope.nvim'}},
     }
+
 
 end}
 
