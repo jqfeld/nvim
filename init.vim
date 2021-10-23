@@ -11,8 +11,8 @@ set mouse=a
 
 lua require('init')
 lua R('plugins')
-lua R('lsp_config')
 lua R('plugin_settings')
+lua R('lsp_config')
 
 
 "" Behaviour
@@ -49,27 +49,11 @@ set splitbelow
 set splitright
 
 " Autocompletion
-
-let g:completion_enable_auto_popup = 1
-let g:completion_enable_auto_signature = 0
-imap <tab> <Plug>(completion_smart_tab)
-imap <s-tab> <Plug>(completion_smart_s_tab)
-
-" Use <Tab> and <S-Tab> to navigate through popup menu
-" inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
 " Set completeopt to have a better completion experience
-set completeopt=menuone,noselect
-
+" set completeopt=menuone,noselect
+set completeopt=menu,menuone,noselect,noinsert
 " Avoid showing message extra message when using completion
 set shortmess+=c
-
-let g:completion_chain_complete_list = [
-    \{'complete_items': ['lsp', 'path','snippet']},
-    \{'mode': '<c-p>'},
-    \{'mode': '<c-n>'}
-\]
 
 if has('win32')
     set shell=powershell
@@ -79,6 +63,14 @@ endif
 if has('unix')
     let g:vimtex_view_general_viewer = 'zathura'
 endif
+
+
+" Recognize handlebar and tera templates as html
+augroup HTMLTemplates
+    autocmd!
+    autocmd BufReadPre,FileReadPre *.hbs set ft=html
+    autocmd BufReadPre,FileReadPre *.tera set ft=html
+augroup END
 
 "" Style
 "" -------------------------
@@ -141,6 +133,7 @@ nnoremap <leader>ft <cmd>lua require("telescope.builtin").treesitter()<cr>
 nnoremap <leader>fg <cmd>lua require("telescope.builtin").git_files()<cr>
 nnoremap <leader>fP <cmd>lua require("telescope.builtin").find_files({cwd="~/.local/share/nvim/site/pack/packer/start"})<cr>
 nnoremap <leader>fh <cmd>lua require("telescope.builtin").find_files({cwd="~/"})<cr>
+nnoremap <leader>ff <cmd>lua require("telescope.builtin").find_files()<cr>
 nnoremap <leader>fp <cmd>lua require("telescope.builtin").find_files({cwd="~/projects"})<cr>
 
 
@@ -151,7 +144,7 @@ let g:dashboard_default_executive ='telescope'
 nmap <Leader>ss :<C-u>SessionSave<CR>
 nmap <Leader>sl :<C-u>SessionLoad<CR>
 nnoremap <silent> <Leader>fv :DashboardFindHistory<CR>
-nnoremap <silent> <Leader>ff :DashboardFindFile<CR>
+" nnoremap <silent> <Leader>ff :DashboardFindFile<CR>
 nnoremap <silent> <Leader>tc :DashboardChangeColorscheme<CR>
 nnoremap <silent> <Leader>fa :DashboardFindWord<CR>
 nnoremap <silent> <Leader>fB :DashboardJumpMark<CR>
@@ -166,7 +159,6 @@ let g:dashboard_custom_shortcut={
       \ 'new_file'           : 'SPC c n',
       \ }
 
-" nnoremap <silent> <Leader>gz :e ~/Dropbox/neuron/index.md<CR>
 
 " Neogit
 nnoremap <silent> <Leader>gg <cmd>lua require'neogit'.status.create('tab')<CR>
@@ -178,7 +170,7 @@ nnoremap <silent> <Leader>tf :TodoQuickFix <CR>
 " FTerm
 nnoremap <silent> <A-i> <CMD>lua require'FTerm'.toggle()<CR>
 tnoremap <silent> <A-i> <C-\><C-n><CMD>lua require'FTerm'.toggle()<CR>
-"
+
 "" NNN
 lua R('FTerm-nnn').setup({env="ICONLOOKUP=1"})
 nnoremap <LEADER>nn <CMD>lua require("FTerm-nnn").nnn_toggle()<CR>
@@ -188,3 +180,9 @@ nnoremap <LEADER>nh <CMD>lua require("FTerm-nnn").nnn_hs_toggle()<CR>
 
 " Watson keybinds
 nnoremap <silent> <Leader>wd :lua R('watson'); require('watson').find_data()<CR>
+
+" Neorg keybinds
+nnoremap <silent> <Leader>go :NeorgStart<CR>
+
+" Table mode
+nnoremap <silent> <Leader>mt :TableModeToggle<CR>
