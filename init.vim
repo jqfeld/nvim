@@ -32,7 +32,7 @@ set encoding=utf-8
 set visualbell
 
 set expandtab tabstop=4 shiftwidth=4 softtabstop=4 
-set autoindent
+set smartindent
 
 set ttyfast lazyredraw
 set showmatch
@@ -186,3 +186,10 @@ nnoremap <silent> <Leader>go :Neorg workspace gtd<CR>
 
 " Table mode
 nnoremap <silent> <Leader>mt :TableModeToggle<CR>
+
+" Luasnip
+imap <silent><expr> <c-k> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<c-k>'
+inoremap <silent> <c-j> <cmd>lua require('luasnip').jump(-1)<CR>
+imap <silent><expr> <C-l> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-l>'
+snoremap <silent> <c-k> <cmd>lua require('luasnip').jump(1)<CR>
+snoremap <silent> <c-j> <cmd>lua require('luasnip').jump(-1)<CR>

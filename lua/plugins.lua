@@ -98,6 +98,7 @@ return require('packer').startup{function(use)
       'nvim-telescope/telescope.nvim',
       requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
     }
+    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
     use {
         'glepnir/dashboard-nvim',
         requires = {'nvim-telescope/telescope.nvim'}
@@ -171,6 +172,7 @@ return require('packer').startup{function(use)
     use { 'L3MON4D3/LuaSnip' }
     use { 'saadparwaiz1/cmp_luasnip' }
     use { 'hrsh7th/cmp-buffer' }
+    use { 'hrsh7th/cmp-path' }
     use { 'hrsh7th/nvim-cmp' }
 
     use { 'ray-x/lsp_signature.nvim' }
