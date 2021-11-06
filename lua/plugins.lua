@@ -41,9 +41,9 @@ return require('packer').startup{function(use)
                     ["core.norg.dirman"] = { -- Manage your directories with Neorg
                         config = {
                             workspaces = {
-                                main = "~/SeaDrive/Meine Bibliotheken/My Library/neorg",
-                                work = "~/SeaDrive/Meine Bibliotheken/Arbeit/neorg",
-                                gtd = "~/SeaDrive/Meine Bibliotheken/My Library/gtd"
+                                main = "~/Seafile/Neorg/personal",
+                                work = "~/Seafile/Neorg/work",
+                                gtd = "~/Seafile/Neorg/gtd"
                             }
                         }
                     },
