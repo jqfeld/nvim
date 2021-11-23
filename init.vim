@@ -182,7 +182,9 @@ nnoremap <LEADER>nh <CMD>lua require("FTerm-nnn").nnn_hs_toggle()<CR>
 nnoremap <silent> <Leader>wd :lua R('watson'); require('watson').find_data()<CR>
 
 " Neorg keybinds
-nnoremap <silent> <Leader>go :Neorg workspace gtd<CR>
+nnoremap <silent> <Leader>og :Neorg workspace gtd<CR>
+nnoremap <silent> <Leader>ow :Neorg workspace work<CR>
+nnoremap <silent> <Leader>op :Neorg workspace main<CR>
 
 " Table mode
 nnoremap <silent> <Leader>mt :TableModeToggle<CR>
