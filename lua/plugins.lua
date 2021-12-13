@@ -25,7 +25,7 @@ return require('packer').startup{function(use)
     -- neorg
     use { 
         "nvim-neorg/neorg",
-        branch = "unstable",
+        branch = "main",
         config = function()
             require('neorg').setup {
                 -- Tell Neorg what modules to load
@@ -137,14 +137,14 @@ return require('packer').startup{function(use)
     }
 
     if vim.api.nvim_call_function('has',{"unix"}) then
-        -- use {
-        --     "jqfeld/FTerm-nnn.nvim",
-        --     requires = { "jqfeld/FTerm.nvim" },
-        -- }
         use {
-            "luukvbaal/nnn.nvim",
-            config = function() require("nnn").setup() end
+            "jqfeld/FTerm-nnn.nvim",
+            requires = { "jqfeld/FTerm.nvim" },
         }
+        -- use {
+        --     "luukvbaal/nnn.nvim",
+        --     config = function() require("nnn").setup() end
+        -- }
     end
     -- Language support plugins
     use { 'nvim-treesitter/nvim-treesitter',
