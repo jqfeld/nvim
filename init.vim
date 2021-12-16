@@ -183,6 +183,8 @@ nnoremap <LEADER>nh <CMD>lua require("FTerm-nnn").nnn_hs_toggle()<CR>
 
 " Watson keybinds
 nnoremap <silent> <Leader>wd :lua R('watson'); require('watson').find_data()<CR>
+nnoremap <silent> <Leader>wo :lua R('watson'); require('watson').find_data({insert=false})<CR>
+nnoremap <silent> <Leader>wp :lua R('watson'); require('watson').find_plot()<CR>
 
 " Neorg keybinds
 nnoremap <silent> <Leader>og :Neorg workspace gtd<CR>
