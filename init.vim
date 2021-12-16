@@ -11,8 +11,8 @@ set mouse=a
 
 lua require('init')
 lua R('plugins')
-lua R('plugin_settings')
 lua R('lsp_config')
+lua R('plugin_settings')
 
 
 "" Behaviour
