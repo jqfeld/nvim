@@ -52,7 +52,12 @@ return require('packer').startup{function(use)
                         config = {
                             workspace = "gtd" -- assign the workspace,
                         },
-                    } -- Enable GTD module
+                    }, -- Enable GTD module
+                    ["core.norg.completion"] = {
+                        config = {
+                            engine = "nvim-cmp", -- We current support nvim-compe and nvim-cmp only
+                        },
+                    },
                 },
             }
         end,
@@ -209,7 +214,8 @@ return require('packer').startup{function(use)
 
 
     -- Dev projects
-    use { 'jqfeld/watson.nvim', 
+    use { 'jqfeld/watson.nvim',
+        branch = "main",
         requires = {{'nvim-lua/plenary.nvim'}, {'nvim-lua/popup.nvim'},
                     {'nvim-telescope/telescope.nvim'}},
     }
