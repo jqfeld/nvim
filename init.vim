@@ -172,17 +172,19 @@ nnoremap <silent> <A-i> <CMD>lua require'FTerm'.toggle()<CR>
 tnoremap <silent> <A-i> <C-\><C-n><CMD>lua require'FTerm'.toggle()<CR>
 
 "" NNN
-" lua R('FTerm-nnn').setup({env="ICONLOOKUP=1"})
-" nnoremap <LEADER>nn <CMD>lua require("FTerm-nnn").nnn_toggle()<CR>
-" nnoremap <LEADER>nv <CMD>lua require("FTerm-nnn").nnn_vs_toggle()<CR>
-" nnoremap <LEADER>nh <CMD>lua require("FTerm-nnn").nnn_hs_toggle()<CR>
-tnoremap <C-A-n> <cmd>NnnExplorer<CR>
-nnoremap <C-A-n> <cmd>NnnExplorer %:p:h<CR>
-tnoremap <C-A-p> <cmd>NnnPicker<CR>
-nnoremap <C-A-p> <cmd>NnnPicker<CR>
+lua R('FTerm-nnn').setup({env="ICONLOOKUP=1"})
+nnoremap <LEADER>nn <CMD>lua require("FTerm-nnn").nnn_toggle()<CR>
+nnoremap <LEADER>nv <CMD>lua require("FTerm-nnn").nnn_vs_toggle()<CR>
+nnoremap <LEADER>nh <CMD>lua require("FTerm-nnn").nnn_hs_toggle()<CR>
+" tnoremap <C-A-n> <cmd>NnnExplorer<CR>
+" nnoremap <C-A-n> <cmd>NnnExplorer %:p:h<CR>
+" tnoremap <C-A-p> <cmd>NnnPicker<CR>
+" nnoremap <C-A-p> <cmd>NnnPicker<CR>
 
 " Watson keybinds
 nnoremap <silent> <Leader>wd :lua R('watson'); require('watson').find_data()<CR>
+nnoremap <silent> <Leader>wo :lua R('watson'); require('watson').find_data({insert=false})<CR>
+nnoremap <silent> <Leader>wp :lua R('watson'); require('watson').find_plot()<CR>
 
 " Neorg keybinds
 nnoremap <silent> <Leader>og :Neorg workspace gtd<CR>
