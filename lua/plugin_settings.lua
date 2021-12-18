@@ -17,15 +17,15 @@ iron.core.set_config {
 
 
 
-require('kommentary.config').configure_language("julia", {
-    single_line_comment_string = "#",
-    multi_line_comment_string = {"#=", "=#"},
-    prefer_single_line_comments = true,
-})
-require('kommentary.config').configure_language("default", {
-    prefer_single_line_comments = true,
-})
-
+-- require('kommentary.config').configure_language("julia", {
+--     single_line_comment_string = "#",
+--     multi_line_comment_string = {"#=", "=#"},
+--     prefer_single_line_comments = true,
+-- })
+-- require('kommentary.config').configure_language("default", {
+--     prefer_single_line_comments = true,
+-- })
+--
 
 -- Setup telescope
 require('telescope').setup {

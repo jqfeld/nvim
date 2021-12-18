@@ -69,39 +69,40 @@ return require('packer').startup{function(use)
     use { "sainnhe/gruvbox-material"}
     use { "kyazdani42/nvim-web-devicons" }
     use { "romgrk/barbar.nvim", requires = {"kyazdani42/nvim-web-devicons"}}
+
     use {
-    'nvim-lualine/lualine.nvim',
-    requires = {'kyazdani42/nvim-web-devicons'},
-    config = function()
-      require('lualine').setup{
-        options = {
-          theme = 'gruvbox',
-          section_separators = {left = '', right=''},
-          component_separators = {left = '', right=''},
-          icons_enabled = true,
-        },
-        sections = {
-          lualine_a = { {'mode', upper = true} },
-          lualine_b = { {'branch', icon = ''} },
-          lualine_c = { {'filename', file_status = true} },
-          lualine_x = { 'encoding', 'fileformat', 'filetype' },
-          lualine_y = { 'progress' },
-          lualine_z = { 'location'  },
-        },
-        inactive_sections = {
-          lualine_a = {  },
-          lualine_b = {  },
-          lualine_c = { 'filename' },
-          lualine_x = { 'location' },
-          lualine_y = {  },
-          lualine_z = {   }
-        },
-      }
-    end
+        'nvim-lualine/lualine.nvim',
+        requires = {'kyazdani42/nvim-web-devicons'},
+        config = function()
+          require('lualine').setup{
+            options = {
+              theme = 'gruvbox',
+              section_separators = {left = '', right=''},
+              component_separators = {left = '', right=''},
+              icons_enabled = true,
+            },
+            sections = {
+              lualine_a = { {'mode', upper = true} },
+              lualine_b = { {'branch', icon = ''} },
+              lualine_c = { {'filename', file_status = true} },
+              lualine_x = { 'encoding', 'fileformat', 'filetype' },
+              lualine_y = { 'progress' },
+              lualine_z = { 'location'  },
+            },
+            inactive_sections = {
+              lualine_a = {  },
+              lualine_b = {  },
+              lualine_c = { 'filename' },
+              lualine_x = { 'location' },
+              lualine_y = {  },
+              lualine_z = {   }
+            },
+          }
+        end
     }
     use {
-      'nvim-telescope/telescope.nvim',
-      requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+        'nvim-telescope/telescope.nvim',
+        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
     }
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
     use {
@@ -151,6 +152,7 @@ return require('packer').startup{function(use)
         --     config = function() require("nnn").setup() end
         -- }
     end
+    --
     -- Language support plugins
     use { 'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
@@ -188,8 +190,13 @@ return require('packer').startup{function(use)
     use { 'ray-x/lsp_signature.nvim' }
     -- use { 'ray-x/navigator.lua', requires = {'ray-x/guihua.lua', run = 'cd lua/fzy && make'}}
 
-    use { 'b3nj5m1n/kommentary' }
-
+    -- use { 'b3nj5m1n/kommentary' }
+    use {
+        'numToStr/Comment.nvim',
+        config = function()
+            require('Comment').setup()
+        end
+    }
     -- Rust
     use { 'rust-lang/rust.vim' }
 
@@ -220,6 +227,11 @@ return require('packer').startup{function(use)
         requires = {{'nvim-lua/plenary.nvim'}, {'nvim-lua/popup.nvim'},
                     {'nvim-telescope/telescope.nvim'}},
     }
+
+    use { 'jqfeld/todotxt.nvim',
+        requires = {{'nvim-lua/plenary.nvim'}, {'nvim-lua/popup.nvim'},
+                    {'nvim-telescope/telescope.nvim'}},
+                }
 
 
 end}
