@@ -1,5 +1,5 @@
 
-" (N)Vim Configuration File
+" (N)Vim Configurtion File
 " " vim  : place in $HOME/.vimrc
 " " nvim : place in $HOME/.config/nvim/init.vim
 " " General settings
@@ -164,7 +164,7 @@ let g:dashboard_custom_shortcut={
 nnoremap <silent> <Leader>gg <cmd>lua require'neogit'.status.create('tab')<CR>
 
 " Todo-comments
-nnoremap <silent> <Leader>tt :TodoTelescope <CR>
+nnoremap <silent> <Leader>fT :TodoTelescope <CR>
 nnoremap <silent> <Leader>tf :TodoQuickFix <CR>
 
 " FTerm
@@ -200,3 +200,6 @@ inoremap <silent> <c-j> <cmd>lua require('luasnip').jump(-1)<CR>
 imap <silent><expr> <C-l> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-l>'
 snoremap <silent> <c-k> <cmd>lua require('luasnip').jump(1)<CR>
 snoremap <silent> <c-j> <cmd>lua require('luasnip').jump(-1)<CR>
+
+" todo.txt
+nnoremap <silent> <Leader>ta <cmd>lua R('todotxt'); require('todotxt').todo_prompt()<CR>
