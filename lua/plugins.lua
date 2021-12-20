@@ -171,7 +171,13 @@ return require('packer').startup{function(use)
                 ensure_installed = {"julia", "rust", "lua", "c", "norg"},
                 highlight = {
                     enable = true,
-                }
+                },
+                indent = {
+                    enable = true
+                },
+                incremental_selection = {
+                    enable = true
+                },
             }
         end
     }
