@@ -105,6 +105,7 @@ return require('packer').startup{function(use)
         requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
     }
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+    use { "nvim-telescope/telescope-file-browser.nvim" }
     use {
         'glepnir/dashboard-nvim',
         requires = {'nvim-telescope/telescope.nvim'}
@@ -190,6 +191,7 @@ return require('packer').startup{function(use)
             }
         end
     }
+    use { 'nvim-treesitter/playground'}
 
     use({
       "neovim/nvim-lspconfig",

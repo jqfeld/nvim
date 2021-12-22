@@ -126,7 +126,8 @@ nnoremap <silent>    <A-9> :BufferLast<CR>
 nnoremap <silent>    <A-c> :BufferClose<CR>
 
 "" Telescope.nvim
-nnoremap <leader>fe <cmd>lua require("telescope.builtin").file_browser()<cr>
+" nnoremap <leader>fe <cmd>lua require("telescope.builtin").file_browser()<cr>
+nnoremap <leader>fe <cmd>lua require 'telescope'.extensions.file_browser.file_browser()<CR>
 nnoremap <leader>fb <cmd>lua require("telescope.builtin").buffers()<cr>
 nnoremap <leader>fH <cmd>lua require("telescope.builtin").help_tags()<cr>
 nnoremap <leader>ft <cmd>lua require("telescope.builtin").treesitter()<cr>
@@ -135,7 +136,6 @@ nnoremap <leader>fP <cmd>lua require("telescope.builtin").find_files({cwd="~/.lo
 nnoremap <leader>fh <cmd>lua require("telescope.builtin").find_files({cwd="~/"})<cr>
 nnoremap <leader>ff <cmd>lua require("telescope.builtin").find_files()<cr>
 nnoremap <leader>fp <cmd>lua require("telescope.builtin").find_files({cwd="~/projects"})<cr>
-
 
 
 "
