@@ -23,7 +23,7 @@ return require('packer').startup{function(use)
     use {'wbthomason/packer.nvim'}
 
     -- neorg
-    use { 
+    use {
         "nvim-neorg/neorg",
         branch = "main",
         config = function()
@@ -168,9 +168,24 @@ return require('packer').startup{function(use)
                     branch = "main"
                 },
             }
+            parser_configs.norg_meta = {
+                install_info = {
+                    url = "https://github.com/nvim-neorg/tree-sitter-norg-meta",
+                    files = { "src/parser.c" },
+                    branch = "main"
+                },
+            }
+
+            parser_configs.norg_table = {
+                install_info = {
+                    url = "https://github.com/nvim-neorg/tree-sitter-norg-table",
+                    files = { "src/parser.c" },
+                    branch = "main"
+                },
+            }
 
             require'nvim-treesitter.configs'.setup {
-                ensure_installed = {"julia", "rust", "lua", "c", "norg"},
+                ensure_installed = {"julia", "rust", "lua", "c", "make", "norg", "norg_meta", "norg_table"},
                 highlight = {
                     enable = true,
                 },

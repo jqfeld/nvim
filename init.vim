@@ -74,7 +74,7 @@ augroup END
 
 "" Style
 "" -------------------------
-set background=dark " or light if you want light mode
+set background=light " or light if you want light mode
 let g:gruvbox_material_enable_italic = 1
 colorscheme gruvbox-material
 
@@ -183,8 +183,13 @@ nnoremap <LEADER>nh <CMD>lua require("FTerm-nnn").nnn_hs_toggle()<CR>
 
 " Watson keybinds
 nnoremap <silent> <Leader>wd :lua R('watson'); require('watson').find_data()<CR>
-nnoremap <silent> <Leader>wo :lua R('watson'); require('watson').find_data({insert=false})<CR>
+nnoremap <silent> <Leader>wD :lua R('watson'); require('watson').find_data({insert=false})<CR>
+nnoremap <silent> <Leader>ws :lua R('watson'); require('watson').find_in('scriptsdir',{insert=false})<CR>
+nnoremap <silent> <Leader>wS :lua R('watson'); require('watson').find_in('scriptsdir',{insert=true})<CR>
 nnoremap <silent> <Leader>wp :lua R('watson'); require('watson').find_plot()<CR>
+nnoremap <silent> <Leader>wP :lua R('watson'); require('watson').find_in('projectdir',{insert=false})<CR>
+nnoremap <silent> <Leader>wn :lua R('watson'); require('watson').find_notes()<CR>
+" nnoremap <silent> <Leader>wp :lua R('watson'); require('watson').find_and_open({open_command="zathura", cwd=require('watson/utils').plots_dir()})<CR>
 
 " Neorg keybinds
 nnoremap <silent> <Leader>og :Neorg workspace gtd<CR>
