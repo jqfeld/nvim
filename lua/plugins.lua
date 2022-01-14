@@ -148,10 +148,6 @@ return require('packer').startup{function(use)
             "jqfeld/FTerm-nnn.nvim",
             requires = { "jqfeld/FTerm.nvim" },
         }
-        -- use {
-        --     "luukvbaal/nnn.nvim",
-        --     config = function() require("nnn").setup() end
-        -- }
     end
     --
     -- Language support plugins
@@ -247,11 +243,15 @@ return require('packer').startup{function(use)
         end
     }
 
+    use {
+      "blackCauldron7/surround.nvim",
+      config = function()
+        require"surround".setup {mappings_style = "surround"}
+      end
+    }
     -- LaTeX
     use { 'lervag/vimtex' }
 
-    -- Lua
-    -- use { 'tjdevries/nlua.nvim' }
 
 
     -- Dev projects
@@ -260,11 +260,11 @@ return require('packer').startup{function(use)
                     {'nvim-telescope/telescope.nvim'}},
     }
 
-    use { 'jqfeld/todotxt.nvim',
-        requires = {{'nvim-lua/plenary.nvim'}, {'nvim-lua/popup.nvim'},
-                    {'nvim-telescope/telescope.nvim'}},
-                }
-
+    -- use { 'jqfeld/todotxt.nvim',
+    --     requires = {{'nvim-lua/plenary.nvim'}, {'nvim-lua/popup.nvim'},
+    --                 {'nvim-telescope/telescope.nvim'}},
+    --             }
+    --
 
 end}
 

@@ -80,7 +80,7 @@ colorscheme gruvbox-material
 
 set termguicolors
 
-set colorcolumn=80
+" set colorcolumn=80
 set cursorline
 set showmode showcmd
 set number "relativenumber 
