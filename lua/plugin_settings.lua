@@ -1,3 +1,6 @@
+
+R('FTerm-nnn').setup({env="ICONLOOKUP=1"})
+
 local iron = require('iron')
 
 iron.core.add_repl_definitions {

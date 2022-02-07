@@ -65,7 +65,6 @@ return require('packer').startup{function(use)
     }
 
     -- Syle plugins
-    -- use { "npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
     use { "sainnhe/gruvbox-material"}
     use { "kyazdani42/nvim-web-devicons" }
     use { "romgrk/barbar.nvim", requires = {"kyazdani42/nvim-web-devicons"}}
@@ -100,16 +99,24 @@ return require('packer').startup{function(use)
           }
         end
     }
+
+    use {
+      "folke/which-key.nvim",
+      config = function()
+        require("which-key").setup {
+          -- your configuration comes here
+          -- or leave it empty to use the default settings
+          -- refer to the configuration section below
+        }
+      end
+    }
+
     use {
         'nvim-telescope/telescope.nvim',
         requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
     }
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
     use { "nvim-telescope/telescope-file-browser.nvim" }
-    use {
-        'glepnir/dashboard-nvim',
-        requires = {'nvim-telescope/telescope.nvim'}
-    }
 
     use {
       "folke/todo-comments.nvim",
