@@ -19,17 +19,6 @@ iron.core.set_config {
 }
 
 
-
--- require('kommentary.config').configure_language("julia", {
---     single_line_comment_string = "#",
---     multi_line_comment_string = {"#=", "=#"},
---     prefer_single_line_comments = true,
--- })
--- require('kommentary.config').configure_language("default", {
---     prefer_single_line_comments = true,
--- })
---
-
 -- Setup telescope
 require('telescope').setup {
   extensions = {
@@ -57,10 +46,17 @@ require('telescope').setup {
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('file_browser')
 
-
+-- Setup autopairs
+require('nvim-autopairs').setup{}
 
 -- Setup nvim-cmp.
-local cmp = require'cmp'
+local has_words_before = function()
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+
+local luasnip = require("luasnip")
+local cmp = require('cmp')
 
 cmp.setup({
     snippet = {
@@ -76,14 +72,37 @@ cmp.setup({
       end,
     },
     mapping = {
-      ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-      ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<C-Space>'] = cmp.mapping.complete(),
-      ['<C-e>'] = cmp.mapping.close(),
-      ['<CR>'] = cmp.mapping.confirm({ select = false }),
+        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-e>'] = cmp.mapping.close(),
+        ['<CR>'] = cmp.mapping.confirm({ select = false }),
+        -- luasnip stuff
+        ["<C-n>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item()
+            elseif luasnip.expand_or_jumpable() then
+                luasnip.expand_or_jump()
+            elseif has_words_before() then
+                cmp.complete()
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
+
+        ["<C-p>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item()
+            elseif luasnip.jumpable(-1) then
+                luasnip.jump(-1)
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
     },
     sources = {
       { name = 'nvim_lsp' },
+    { name = 'nvim_lsp_signature_help' },
 
       -- For luasnip user.
       { name = 'luasnip' },
@@ -93,20 +112,12 @@ cmp.setup({
       { name = 'neorg' },
     },
       experimental = {
-        -- I like the new menu better! Nice work hrsh7th
         native_menu = false,
 
-        -- Let's play with this for a day or two
         ghost_text = true,
       },
 })
 
-  -- Setup lspconfig.
-  -- require('lspconfig')[%YOUR_LSP_SERVER%].setup {
-  --   capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-  -- }
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({ map_char = { tex = '' } } ) )
 
---[[ require('neuron').setup {
-    neuron_dir = "~/Dropbox/neuron", -- the directory of all of your notes, expanded by default (currently supports only one directory for notes, find a way to detect neuron.dhall to use any directory)
-}
- ]]

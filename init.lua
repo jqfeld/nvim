@@ -1,0 +1,5 @@
+require('init')
+R('plugins')
+R('lsp_config')
+R('plugin_settings')
+R("keymaps")

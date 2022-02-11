@@ -158,7 +158,10 @@ return require('packer').startup{function(use)
     end
     --
     -- Language support plugins
-    use { 'p00f/nvim-ts-rainbow'}
+    use { 'p00f/nvim-ts-rainbow' }
+
+    use { 'windwp/nvim-autopairs' }
+
     use { 'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
         config = function()
@@ -216,16 +219,16 @@ return require('packer').startup{function(use)
     })
 
     use { 'hrsh7th/cmp-nvim-lsp' }
+    use { 'hrsh7th/cmp-nvim-lsp-signature-help' }
     use { 'L3MON4D3/LuaSnip' }
     use { 'saadparwaiz1/cmp_luasnip' }
     use { 'hrsh7th/cmp-buffer' }
     use { 'hrsh7th/cmp-path' }
     use { 'hrsh7th/nvim-cmp' }
 
-    use { 'ray-x/lsp_signature.nvim' }
+    -- use { 'ray-x/lsp_signature.nvim' }
     -- use { 'ray-x/navigator.lua', requires = {'ray-x/guihua.lua', run = 'cd lua/fzy && make'}}
 
-    -- use { 'b3nj5m1n/kommentary' }
     use {
         'numToStr/Comment.nvim',
         config = function()
@@ -257,7 +260,8 @@ return require('packer').startup{function(use)
       end
     }
     -- LaTeX
-    use { 'lervag/vimtex' }
+    -- use { 'lervag/vimtex' }
+
 
 
 
@@ -267,11 +271,6 @@ return require('packer').startup{function(use)
                     {'nvim-telescope/telescope.nvim'}},
     }
 
-    -- use { 'jqfeld/todotxt.nvim',
-    --     requires = {{'nvim-lua/plenary.nvim'}, {'nvim-lua/popup.nvim'},
-    --                 {'nvim-telescope/telescope.nvim'}},
-    --             }
-    --
 
 end}
 
