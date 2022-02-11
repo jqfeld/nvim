@@ -236,7 +236,7 @@ return require('packer').startup{function(use)
         end
     }
     -- Rust
-    use { 'rust-lang/rust.vim' }
+    -- use { 'rust-lang/rust.vim' }
 
     -- Julia
     use { 'JuliaEditorSupport/julia-vim' }
