@@ -1,4 +1,3 @@
-
 R('FTerm-nnn').setup({env="ICONLOOKUP=1"})
 
 local iron = require('iron')
@@ -17,6 +16,7 @@ iron.core.set_config {
   },
   repl_open_cmd = "rightbelow split"
 }
+
 
 
 -- Setup telescope
@@ -40,11 +40,15 @@ require('telescope').setup {
         },
       },
     },
+    ["ui-select"] = {
+        require("telescope.themes").get_dropdown {}
+    },
   }
 }
 -- Load telescope extensions
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('file_browser')
+require('telescope').load_extension('ui-select')
 
 -- Setup autopairs
 require('nvim-autopairs').setup{}

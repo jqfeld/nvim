@@ -68,6 +68,7 @@ return require('packer').startup{function(use)
     use { "sainnhe/gruvbox-material"}
     use { "kyazdani42/nvim-web-devicons" }
     use { "romgrk/barbar.nvim", requires = {"kyazdani42/nvim-web-devicons"}}
+    use { 'nvim-telescope/telescope-ui-select.nvim' }
 
     use {
         'nvim-lualine/lualine.nvim',
@@ -196,10 +197,10 @@ return require('packer').startup{function(use)
                     enable = true,
                 },
                 indent = {
-                    enable = true
+                    enable = true,
                 },
                 incremental_selection = {
-                    enable = true
+                    enable = true,
                 },
                 rainbow = {
                     enable = true,
@@ -236,7 +237,7 @@ return require('packer').startup{function(use)
         end
     }
     -- Rust
-    -- use { 'rust-lang/rust.vim' }
+    use {'mfussenegger/nvim-dap'}
 
     -- Julia
     use { 'JuliaEditorSupport/julia-vim' }
