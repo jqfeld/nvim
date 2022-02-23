@@ -46,7 +46,7 @@ require('telescope').setup {
   }
 }
 -- Load telescope extensions
-require('telescope').load_extension('fzf')
+-- require('telescope').load_extension('fzf')
 require('telescope').load_extension('file_browser')
 require('telescope').load_extension('ui-select')
 

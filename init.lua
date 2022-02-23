@@ -9,7 +9,13 @@ if pcall(require, 'plenary') then
         RELOAD(name)
         return require(name)
     end
+else
+    R = function(name)
+        return require(name)
+    end
 end
+
+R('plugins')
 
 local opt = vim.opt
 local G = vim.g
@@ -76,7 +82,6 @@ cmd("au FocusGained,BufEnter * :silent! !")
 -- augroup END
 -- ]])
 
-R('plugins')
 R('lsp_config')
 R('plugin_settings')
 R("keymaps")
