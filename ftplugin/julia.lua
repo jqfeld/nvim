@@ -20,11 +20,19 @@ wk.register({
         i = { "<Plug>(iron-interrupt)", "Interrupt REPL" },
         -- TODO: this is very hacky, can probably be done much nicer
         a = { [[<CMD>:w <bar> :call luaeval("require('iron').core.send(_A[1], _A[2])", [&ft, "include(\"".expand("%")."\")"])<CR>"]], "Run include(this_file) in REPL" },
-        e = { [[<Cmd>:w <bar> :call luaeval("require('iron').core.send(_A[1], _A[2])", [&ft, "include(\"".expand("%")."\")"])<CR>]], "Save and send each line to REPL" },
+        e = { [[<Cmd>:w <bar> :call luaeval("require('iron').core.send(_A[1], _A[2])", [&ft, join(getline(1,'$'), "\n")])<CR>]], "Save and send each line to REPL" },
         f = { "<CMD>:IronFocus<CR>", "Focus on REPL" },
         r = { "<CMD>:IronRestart<CR>", "Restart REPL" },
         c = { "<Plug>(iron-clear)<CR>", "Clear REPL" },
     },
 }, { prefix = "<leader>" })
+
+wk.register({
+    i = {
+        name = "Iron/Julia", -- optional group name
+        v = { "<Plug>(iron-visual-send)", "Send selection to REPL" },
+    },
+}, { prefix = "<leader>" , mode = "v"})
+
 
 
