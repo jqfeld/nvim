@@ -259,8 +259,9 @@ return require('packer').startup{function(use)
     --     require"surround".setup {mappings_style = "surround"}
     --   end
     -- }
+    
     -- LaTeX
-    -- use { 'lervag/vimtex' }
+    use { 'lervag/vimtex' }
 
 
 

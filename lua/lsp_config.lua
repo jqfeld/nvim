@@ -128,4 +128,7 @@ lsp_setup("sumneko_lua",{
     on_attach = on_attach,
     capabilities = create_capabilities(),
 })
-
+lsp_setup("texlab", {
+    on_attach = on_attach,
+    capabilities = create_capabilities(),
+})

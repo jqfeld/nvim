@@ -23,6 +23,7 @@ local cmd = vim.api.nvim_command
 
 G.nvim_config_root = vim.fn.stdpath('config')
 G.mapleader = " "
+G.vimtex_view_method = 'zathura'
 
 opt.mouse = "a"
 
@@ -85,3 +86,4 @@ cmd("au FocusGained,BufEnter * :silent! !")
 R('lsp_config')
 R('plugin_settings')
 R("keymaps")
+-- R('mathedit')

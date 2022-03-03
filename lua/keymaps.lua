@@ -100,6 +100,7 @@ wk.register({
     name = "FTerm",
     ["<A-i>"] = { require("FTerm").toggle, "Toggle FTerm"}
 })
+
 wk.register({
     name = "FTerm",
     ["<A-i>"] = { require("FTerm").toggle, "Toggle FTerm"}
