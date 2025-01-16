@@ -44,26 +44,6 @@ return {
         client.server_capabilities.document_formatting = true
       end
 
-      local on_attach_qmd = function(client, bufnr)
-        local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-        local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-
-        buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-        local opts = { noremap = true, silent = true }
-
-        -- buf_set_keymap('n', 'gS', '<cmd>Telescope lsp_document_symbols<CR>', opts)
-        -- buf_set_keymap('n', 'gD', '<cmd>Telescope lsp_type_definitions<CR>', opts)
-        -- buf_set_keymap('n', 'gd', '<cmd>Telescope lsp_definitions<CR>', opts)
-        -- buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-        buf_set_keymap('n', 'gh', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-        buf_set_keymap('n', 'gi', '<cmd>Telescope lsp_implementations<CR>', opts)
-        -- buf_set_keymap('n', 'gr', '<cmd>Telescope lsp_references<CR>', opts)
-        buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-        buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-        buf_set_keymap('n', '<leader>ll', '<cmd>lua vim.lsp.codelens.run()<cr>', opts)
-        buf_set_keymap('n', '<leader>lR', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-        client.server_capabilities.document_formatting = true
-      end
 
 
       local lsp_flags = {
@@ -278,14 +258,15 @@ return {
       end
 
       lspconfig.ltex.setup {
-        on_attach = on_attach,
+        on_attach = on_attach,  
+        filetypes = { "latex", "typst", "typ", "bib", "markdown", "plaintex", "tex" }, --  <-- add this
         capabilities = capabilities,
         flags = lsp_flags,
         root_dir = util.root_pattern("something_impossible"), -- util.find_git_ancestor,
         single_file_support = true,
         settings = {
           ltex = {
-            enabled = { 'latex', 'tex', 'bib', 'markdown' },
+            enabled = { 'latex', 'tex', 'bib', 'markdown', 'typst' },
             language = 'en-US',
             -- language = 'de-DE',
             diagnosticSeverity = 'information',
@@ -311,7 +292,15 @@ return {
       lspconfig.nushell.setup {}
       lspconfig.ccls.setup {}
       lspconfig.openscad_lsp.setup {}
-      lspconfig.tinymist.setup {}
+      lspconfig.tinymist.setup {
+        on_attach = on_attach,  
+        capabilities = capabilities,
+        flags = lsp_flags,
+        settings = {
+          exportPdf = "onSave",
+          outputPath = "$root/$dir/$name"
+        }
+      }
     end
   },
 

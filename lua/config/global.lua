@@ -4,6 +4,7 @@ vim.opt.termguicolors = true
 
 -- more opinionated
 vim.opt.number = true                  -- show linenumbers
+vim.opt.relativenumber = true
 vim.opt.mouse = 'a'                    -- enable mouse
 vim.opt.mousefocus = true
 vim.opt.clipboard:append 'unnamedplus' -- use system clipboard

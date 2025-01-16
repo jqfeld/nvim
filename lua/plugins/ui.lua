@@ -82,7 +82,7 @@ return {
           lualine_y = { 'progress' },
           lualine_z = { 'location' }
         },
-        extensions = { 'nvim-tree' },
+        -- extensions = { 'nvim-tree' },
         priority = 1001,
       }
     end
@@ -99,34 +99,57 @@ return {
   { 'folke/which-key.nvim' },
 
   -- filetree
+  -- {
+  --   'nvim-tree/nvim-tree.lua',
+  --   keys = {
+  --     -- { '<c-b>', ':NvimTreeToggle<cr>' },
+  --   },
+  --   config = function()
+  --     require 'nvim-tree'.setup {
+  --       disable_netrw       = true,
+  --       update_focused_file = {
+  --         enable = true,
+  --       },
+  --       git                 = {
+  --         enable = true,
+  --         ignore = false,
+  --         timeout = 500,
+  --       },
+  --       diagnostics         = {
+  --         enable = true,
+  --       },
+  --       filters             = {
+  --         dotfiles = true,
+  --         custom = {
+  --           [[.*\.pdf]],
+  --         },
+  --       }
+  --     }
+  --     require "which-key".add({
+  --       { "<Leader>b", ":NvimTreeToggle<CR>", desc = "Toggle NvimTree" }
+  --     })
+  --   end,
+  --   lazy = false,
+  -- },
   {
-    'nvim-tree/nvim-tree.lua',
-    keys = {
-      -- { '<c-b>', ':NvimTreeToggle<cr>' },
-    },
-    config = function()
-      require 'nvim-tree'.setup {
-        disable_netrw       = true,
-        update_focused_file = {
-          enable = true,
-        },
-        git                 = {
-          enable = true,
-          ignore = false,
-          timeout = 500,
-        },
-        diagnostics         = {
-          enable = true,
-        },
-        filters             = {
-          dotfiles = true,
-        }
+    'stevearc/oil.nvim',
+    ---@module 'oil'
+    ---@type oil.SetupOpts
+    opts = {
+      delete_to_trash = true,
+      view_options = {
+      is_hidden_file = function(name, bufnr)
+        local m = name:match("^%.")
+        local pdf = name:match("%.pdf")
+        return m ~= nil or pdf ~= nil 
+      end,
       }
-      require"which-key".add({
-        {"<Leader>b", ":NvimTreeToggle<CR>", desc = "Toggle NvimTree"}
-      })
-    end,
-    lazy = false,
+    },
+    -- Optional dependencies
+    dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
+    keys = {
+      { '<leader>b', ':Oil<cr>', desc = 'Browse files (oil.nvim)' },
+    },
   },
 
   {

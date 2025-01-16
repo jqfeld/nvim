@@ -35,7 +35,7 @@ return {
             clear_in_insert_mode = false,
             download_remote_images = false,
             only_render_image_at_cursor = false,
-            filetypes = { "markdown", "vimwiki" }, -- markdown extensions (ie. quarto) can go here
+            filetypes = { "markdown", "vimwiki",}, -- markdown extensions (ie. quarto) can go here
             resolve_image_path = function(document_path, image_path, fallback)
               local root_dir = require('lspconfig').util.root_pattern('.git', '.obsidian', '.moxide.toml')(document_path)
 
@@ -47,6 +47,25 @@ return {
                 return fallback(document_path, image_path)
               else
                 return root_dir .. "/" .. image_path
+              end
+            end
+          },
+          typst = {
+            enabled = false, 
+            clear_in_insert_mode = false,
+            download_remote_images = false,
+            only_render_image_at_cursor = false,
+            resolve_image_path = function(document_path, image_path, fallback)
+              -- Could also use `require('lspconfig').util.find_git_ancestor(document_path)`
+              -- but this way later other patterns can be used if needed
+              local root_dir = require('lspconfig').util.root_pattern('.git')(document_path)
+
+              if root_dir ~= nil and 
+                  vim.startswith(image_path, "/")
+              then
+                return root_dir  .. image_path
+              else
+                return fallback(document_path, image_path)
               end
             end
           },

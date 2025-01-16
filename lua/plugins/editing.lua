@@ -27,9 +27,24 @@ return {
   {
     'chomosuke/typst-preview.nvim',
     lazy = false, -- or ft = 'typst'
-    version = '0.3.*',
+    version = '1.*',
     build = function() require 'typst-preview'.update() end,
+    config = function()
+      require("typst-preview").setup {
+        get_root = require("lspconfig.util").find_git_ancestor,
+      }
+    end,
+    keys = {
+      { "<Leader>tp", "<CMD>TypstPreview<CR>", desc = "Open Typst preview" },
+    },
   },
-  -- paste an image to markdown from the clipboard
-  -- :PasteImg,
+
+  { 'vigoux/ltex-ls.nvim' },
+
+  {
+    "m4xshen/hardtime.nvim",
+    dependencies = { "MunifTanjim/nui.nvim" },
+    opts = {}
+  },
+
 }

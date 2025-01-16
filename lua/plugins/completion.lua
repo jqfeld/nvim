@@ -128,6 +128,8 @@ return {
               nvim_lsp = "[LSP]",
               buffer = "[buf]",
               path = "[path]",
+              gitroot = "[gitroot]",
+              -- drwatson = "[drwatson]",
               spell = "[spell]",
               pandoc_references = "[ref]",
               tags = "[tag]",
@@ -142,15 +144,17 @@ return {
           { name = 'path' },
           {
             name = 'nvim_lsp',
-            option = {
-              mardown_oxide = {
-                keyword_pattern = [[\(\k\| \|\/\|#\)\+]] }
-            }
+            priority = 100,
+            -- option = {
+            --   mardown_oxide = {
+            --     keyword_pattern = [[\(\k\| \|\/\|#\)\+]] }
+            -- }
           },
+          { name = 'gitroot' },
+          -- { name = 'drwatson' },
           { name = 'nvim_lsp_signature_help' },
           { name = 'luasnip',                keyword_length = 3, max_item_count = 3 },
           { name = 'pandoc_references' },
-          { name = "neorg" },
           { name = 'buffer',                 keyword_length = 5, max_item_count = 3 },
           -- { name = 'spell' ,                 keyword_length = 3,},
           { name = 'treesitter',             keyword_length = 5, max_item_count = 3 },
@@ -174,5 +178,7 @@ return {
       require("luasnip.loaders.from_lua").load({ paths = { vim.fn.stdpath("config") .. "/snippets" } })
     end
   },
+  {"jqfeld/cmp-gitroot", dev=true},
+
 
 }
