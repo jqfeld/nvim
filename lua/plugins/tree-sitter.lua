@@ -6,20 +6,12 @@ return {
     run = ':TSUpdate',
     config = function()
       local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-      parser_config.nu = {
-        install_info = {
-          url = "https://github.com/nushell/tree-sitter-nu",
-          files = { "src/parser.c" },
-          branch = "main",
-        },
-        filetype = "nu",
-      }
 
       require 'nvim-treesitter.configs'.setup {
         ensure_installed = {
           'rust', 'python', 'markdown', 'markdown_inline',
           'julia', 'bash', 'yaml', 'lua', 'vim',
-          'query', 'vimdoc', 'latex', 'html', 'css', 'nu'
+          'query', 'vimdoc', 'latex', 'html', 'css',
         },
         highlight = {
           enable = true,
