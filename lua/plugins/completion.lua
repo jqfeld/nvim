@@ -178,7 +178,7 @@ return {
       require("luasnip.loaders.from_lua").load({ paths = { vim.fn.stdpath("config") .. "/snippets" } })
     end
   },
-  {"jqfeld/cmp-gitroot", dev=true},
+  {"jqfeld/cmp-gitroot", dev=false},
 
 
 }

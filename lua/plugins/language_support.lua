@@ -4,7 +4,7 @@ return {
 
   {
     "jqfeld/drwatson.nvim",
-    dev = true,
+    dev = false,
     config = function()
       -- require('cmp').register_source('drwatson', require('drwatson/cmp_source').new())
     end,
