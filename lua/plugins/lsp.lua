@@ -232,8 +232,17 @@ return {
         settings = {
           texlab = {
             build = {
-              executable = 'latexmk',
-              args = { '-pdflua', '-interaction=nonstopmode', '-synctex=1', '%f' },
+              -- executable = 'latexmk',
+              -- args = { '-pdflua', '-interaction=nonstopmode', '-synctex=1', '%f' },
+              executable = 'tectonic',
+              args = {
+                "-X",
+                "compile",
+                "%f",
+                "--synctex",
+                "--keep-logs",
+                "--keep-intermediates"
+              },
               onSave = true,
               forwardSearchAfter = false,
             },
@@ -258,7 +267,7 @@ return {
       end
 
       lspconfig.ltex.setup {
-        on_attach = on_attach,  
+        on_attach = on_attach,
         filetypes = { "latex", "typst", "typ", "bib", "markdown", "plaintex", "tex" }, --  <-- add this
         capabilities = capabilities,
         flags = lsp_flags,
@@ -291,9 +300,10 @@ return {
       }
       lspconfig.nushell.setup {}
       lspconfig.ccls.setup {}
+      lspconfig.clangd.setup {}
       lspconfig.openscad_lsp.setup {}
       lspconfig.tinymist.setup {
-        on_attach = on_attach,  
+        on_attach = on_attach,
         capabilities = capabilities,
         flags = lsp_flags,
         settings = {
