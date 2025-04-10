@@ -9,7 +9,7 @@ return {
     dependencies = {
       { "williamboman/mason-lspconfig.nvim" },
       { "williamboman/mason.nvim" },
-      { "hrsh7th/cmp-nvim-lsp" },
+      -- { "hrsh7th/cmp-nvim-lsp" },
       { "folke/neodev.nvim",                opt = {} },
     },
     config = function()
@@ -20,7 +20,7 @@ return {
       }
 
       local lspconfig = require('lspconfig')
-      local cmp_nvim_lsp = require('cmp_nvim_lsp')
+      -- local cmp_nvim_lsp = require('cmp_nvim_lsp')
       local util = require("lspconfig.util")
 
       local on_attach = function(client, bufnr)
@@ -37,8 +37,8 @@ return {
         buf_set_keymap('n', 'gh', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
         buf_set_keymap('n', 'gi', '<cmd>Telescope lsp_implementations<CR>', opts)
         buf_set_keymap('n', 'gr', '<cmd>Telescope lsp_references<CR>', opts)
-        buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-        buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+        -- buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+        -- buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
         buf_set_keymap('n', '<leader>ll', '<cmd>lua vim.lsp.codelens.run()<cr>', opts)
         buf_set_keymap('n', '<leader>lR', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
         client.server_capabilities.document_formatting = true
@@ -70,7 +70,8 @@ return {
 
       -- Setting capabilities
       local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
+      -- capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
+      capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
       capabilities.textDocument.completion.completionItem.snippetSupport = true
       -- Ensure that dynamicRegistration is enabled! This allows the LS to take into account actions like the
       -- Create Unresolved File code action, resolving completions for unindexed code blocks, ...
@@ -79,12 +80,6 @@ return {
           dynamicRegistration = true,
         },
       }
-
-      lspconfig.markdown_oxide.setup({
-        capabilities = capabilities, -- again, ensure that capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
-        on_attach = on_attach        -- configure your on attach config
-      })
-
       -- refresh codelens on TextChanged and InsertLeave as well
       -- vim.api.nvim_create_autocmd({ 'TextChanged', 'InsertLeave', 'CursorHold', 'LspAttach' }, {
       --   buffer = bufnr,
@@ -93,17 +88,6 @@ return {
 
       -- trigger codelens refresh
       -- vim.api.nvim_exec_autocmds('User', { pattern = 'LspAttached' })
-
-      -- also needs:
-      -- $home/.config/marksman/config.toml :
-      -- [core]
-      -- markdown.file_extensions = ["md", "markdown", "qmd"]
-      -- lspconfig.marksman.setup {
-      --   on_attach = on_attach_qmd,
-      --   capabilities = capabilities,
-      --   filetypes = { 'markdown' },
-      --   root_dir = util.root_pattern(".git", ".marksman.toml"),
-      -- }
 
       lspconfig.emmet_ls.setup {
         on_attach = on_attach,

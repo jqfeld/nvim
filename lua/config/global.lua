@@ -99,3 +99,5 @@ vim.opt.sessionoptions:append("localoptions")
 
 -- cursorline
 vim.opt.cursorline = true
+
+
