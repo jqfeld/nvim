@@ -33,12 +33,9 @@ return {
         buf_set_keymap('n', 'gS', '<cmd>Telescope lsp_document_symbols<CR>', opts)
         buf_set_keymap('n', 'gD', '<cmd>Telescope lsp_type_definitions<CR>', opts)
         buf_set_keymap('n', 'gd', '<cmd>Telescope lsp_definitions<CR>', opts)
-        buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
         buf_set_keymap('n', 'gh', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
         buf_set_keymap('n', 'gi', '<cmd>Telescope lsp_implementations<CR>', opts)
         buf_set_keymap('n', 'gr', '<cmd>Telescope lsp_references<CR>', opts)
-        -- buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-        -- buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
         buf_set_keymap('n', '<leader>ll', '<cmd>lua vim.lsp.codelens.run()<cr>', opts)
         buf_set_keymap('n', '<leader>lR', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
         client.server_capabilities.document_formatting = true
@@ -113,15 +110,6 @@ return {
         flags = lsp_flags
       }
 
-      local function strsplit(s, delimiter)
-        local result = {}
-        for match in (s .. delimiter):gmatch("(.-)" .. delimiter) do
-          table.insert(result, match)
-        end
-        return result
-      end
-
-
       -- not upadated yet in automatic mason-lspconfig install,
       -- open mason manually with `<space>vm` and `/` search for lua.
       lspconfig.lua_ls.setup {
@@ -193,21 +181,6 @@ return {
         flags = lsp_flags,
       }
 
-      lspconfig.zls.setup {
-        on_attach = on_attach,
-        capabilities = capabilities,
-        flags = lsp_flags,
-      }
-
-      -- Add additional languages here.
-      -- See `:h lspconfig-all` for the configuration.
-      -- Like e.g. Haskell:
-      -- lspconfig.hls.setup {
-      --   on_attach = on_attach,
-      --   capabilities = capabilities,
-      --   flags = lsp_flags
-      -- }
-
       lspconfig.texlab.setup {
         on_attach = on_attach,
         capabilities = capabilities,
@@ -267,8 +240,8 @@ return {
             additionalRules = {
               enablePickyRules = true,
               motherTongue = 'de-DE',
-              languageModel = '~/.local/share/language_models/ngram',
-              word2VecModel = '~/.local/share/language_models/word2vec'
+              -- languageModel = '~/.local/share/language_models/ngram',
+              -- word2VecModel = '~/.local/share/language_models/word2vec'
             },
             dictionary = dictionary,
             trace = { server = 'verbose' },
