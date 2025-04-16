@@ -2,10 +2,13 @@ return {
   {
     'saghen/blink.cmp',
     -- optional: provides snippets for the snippet source
-    dependencies = { 
-      {'rafamadriz/friendly-snippets'} ,
-      { 
-        'L3MON4D3/LuaSnip', version = 'v2.*' , 
+    dependencies = {
+      { 'rafamadriz/friendly-snippets' },
+      { 'saghen/blink.compat' },
+      { "kdheepak/cmp-latex-symbols" },
+      {
+        'L3MON4D3/LuaSnip',
+        version = 'v2.*',
         config = function() require("luasnip.loaders.from_lua").load({ paths = { vim.fn.stdpath("config") .. "/snippets" } }) end
       },
     },
@@ -46,7 +49,32 @@ return {
       -- Default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, due to `opts_extend`
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer' },
+        default = { 'lsp', 'path', 'snippets', 'buffer', 'latex_symbols' },
+        providers = {
+          -- create provider
+          latex_symbols = {
+            -- IMPORTANT: use the same name as you would for nvim-cmp
+            name = 'latex_symbols',
+            module = 'blink.compat.source',
+
+            -- all blink.cmp source config options work as normal:
+            -- score_offset = -3,
+
+            -- this table is passed directly to the proxied completion source
+            -- as the `option` field in nvim-cmp's source config
+            --
+            -- this is NOT the same as the opts in a plugin's lazy.nvim spec
+            opts = {
+              -- this is an option from cmp-digraphs
+              cache_digraphs_on_start = true,
+
+              -- If you'd like to use a `name` that does not exactly match nvim-cmp,
+              -- set `cmp_name` to the name you would use for nvim-cmp, for instance:
+              -- cmp_name = "digraphs"
+              -- then, you can set the source's `name` to whatever you like.
+            },
+          },
+        },
       },
 
       -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance

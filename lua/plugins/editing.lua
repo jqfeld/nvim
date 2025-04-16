@@ -32,6 +32,9 @@ return {
     config = function()
       require("typst-preview").setup {
         get_root = require("lspconfig.util").find_git_ancestor,
+        -- open_cmd = 'firefox %s --class typst-preview'
+        -- open_cmd = 'GDK_BACKEND=x11 /usr/bin/surf %s'
+        open_cmd = 'vimb -i %s'
       }
     end,
     keys = {
