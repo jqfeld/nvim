@@ -265,7 +265,7 @@ return {
         flags = lsp_flags,
         settings = {
           exportPdf = "onSave",
-          outputPath = "$root/$dir/$name"
+          outputPath = "$root/$name"
         }
       }
     end
