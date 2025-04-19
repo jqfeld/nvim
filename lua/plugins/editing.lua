@@ -34,7 +34,8 @@ return {
         -- get_root = require("lspconfig.util").find_git_ancestor,
         -- open_cmd = 'firefox %s --class typst-preview'
         -- open_cmd = 'GDK_BACKEND=x11 /usr/bin/surf %s'
-        open_cmd = 'vimb -i %s'
+        -- open_cmd = 'vimb -i %s'
+        open_cmd = 'qutebrowser -l critical %s'
       }
     end,
     keys = {
