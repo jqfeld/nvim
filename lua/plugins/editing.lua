@@ -6,11 +6,17 @@ return {
       require("nvim-surround").setup()
     end
   },
+
   {
     'windwp/nvim-autopairs',
     config = function()
       require('nvim-autopairs').setup {}
       require('nvim-autopairs').remove_rule('`')
+      local Rule = require('nvim-autopairs.rule')
+      local conds = require('nvim-autopairs.conds')
+      require('nvim-autopairs').add_rule(
+        Rule('$', '$', "typst"):with_move(conds.done())
+      )
     end
   },
 
@@ -35,7 +41,7 @@ return {
         -- open_cmd = 'firefox %s --class typst-preview'
         -- open_cmd = 'GDK_BACKEND=x11 /usr/bin/surf %s'
         -- open_cmd = 'vimb -i %s'
-        open_cmd = 'qutebrowser -l critical %s'
+        open_cmd = 'qutebrowser -l critical --target tab-silent %s'
       }
     end,
     keys = {

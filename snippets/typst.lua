@@ -18,7 +18,8 @@ return {
       {
         filename = i(1, "filename"),
         caption = i(2, "caption"),
-      }
+      }, 
+      {repeat_duplicates = true}
     )
   ),
 }
